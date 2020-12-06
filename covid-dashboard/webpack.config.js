@@ -1,6 +1,6 @@
-const path = require('path')
-const webpack = require('webpack')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const path = require('path');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
@@ -29,14 +29,14 @@ module.exports = {
   module: {
     rules: [
       {
-      test: /\.js$/,
-      exclude: /node_modules/,
+        test: /\.js$/,
+        exclude: /node_modules/,
         use: ['babel-loader'],
       },
 
       {
-      test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
-      type: 'asset/resource',
+        test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
+        type: 'asset/resource',
       },
 
       {
@@ -52,8 +52,8 @@ module.exports = {
       {
         test: /^(?!.*template).*\.html.*$/i, // all html except of template
         loader: 'html-loader',
-      }
-    ]
+      },
+    ],
   },
 
   devServer: {
@@ -64,4 +64,4 @@ module.exports = {
     hot: true,
     port: 8080,
   },
-}
+};
