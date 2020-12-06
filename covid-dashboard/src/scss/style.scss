@@ -1,0 +1,34 @@
+.logo {
+  margin: 0;
+}
+
+.nav-wrapper {
+  padding: 0;
+  margin: 0;
+}
+
+.row {
+  padding-top: 15px;
+}
+
+.cases {
+  height: 482px;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+.cases-country {
+  display: flex;
+}
+
+.country {
+  padding-left: 10px;
+  flex: 1 1 50%;
+  align-items: center;
+}
+
+.confirmed {
+  text-align: right;
+  flex: 1 1 50%;
+  align-items: center;
+}
