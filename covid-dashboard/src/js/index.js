@@ -22,6 +22,7 @@ async function main() {
       byCountryTimeline.push(countryTimeline);
     });
 
+
   } catch {
     throw new Error("Failed to load data");
   }

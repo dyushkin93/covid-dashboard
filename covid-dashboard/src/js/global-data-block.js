@@ -1,7 +1,7 @@
 export default class GlobalDataBlock {
-  constructor(globalData, population100k) {
-    this.globalData = globalData;
-    this.population100k = population100k;
+  constructor(globalData, population) {
+    this.globalData = globalData[0];
+    this.population100k = population;
 
     // elements where data should be exported
     this.casesElem = document.querySelector("body");
@@ -9,27 +9,27 @@ export default class GlobalDataBlock {
     this.recoveredElem = document.querySelector("body");
   }
 
-  getCases(period, unit) {
+  getCases(period, units) {
     let cases;
     let deaths;
     let recovered;
-    if (period === "total" && unit === "absolute") {
-      console.log(this.globalData[0])
-      cases = this.globalData[0].confirmed;
-      deaths = this.globalData[0].deaths;
-      recovered = this.globalData[0].recovered;
-    } else if (period === "lastDay" && unit === "absolute") {
-      cases = this.globalData[0].new_confirmed;
-      deaths = this.globalData[0].new_deaths;
-      recovered = this.globalData[0].new_recovered;
-    } else if (period === "total" && unit === "relavite") {
-      cases = parseInt((this.globalData[0].confirmed / this.population100k), 10);
-      deaths = parseInt((this.globalData[0].deaths / this.population100k), 10);
-      recovered = parseInt((this.globalData[0].recovered / this.population100k), 10);
-    } else if (period === "lastDay" && unit === "relavite") {
-      cases = parseInt((this.globalData[0].new_confirmed / this.population100k), 10);
-      deaths = parseInt((this.globalData[0].new_deaths / this.population100k), 10);
-      recovered = parseInt((this.globalData[0].new_recovered / this.population100k), 10);
+    if (period === "total" && units === "absolute") {
+      console.log(this.globalData)
+      cases = this.globalData.confirmed;
+      deaths = this.globalData.deaths;
+      recovered = this.globalData.recovered;
+    } else if (period === "lastDay" && units === "absolute") {
+      cases = this.globalData.new_confirmed;
+      deaths = this.globalData.new_deaths;
+      recovered = this.globalData.new_recovered;
+    } else if (period === "total" && units === "relavite") {
+      cases = parseInt((this.globalData.confirmed / this.population100k), 10);
+      deaths = parseInt((this.globalData.deaths / this.population100k), 10);
+      recovered = parseInt((this.globalData.recovered / this.population100k), 10);
+    } else if (period === "lastDay" && units === "relavite") {
+      cases = parseInt((this.globalData.new_confirmed / this.population100k), 10);
+      deaths = parseInt((this.globalData.new_deaths / this.population100k), 10);
+      recovered = parseInt((this.globalData.new_recovered / this.population100k), 10);
     }
 
     this.casesElem.innerHTML = cases;
