@@ -1,34 +1,107 @@
-.logo {
-  margin: 0;
+.container {
+  min-width: 100vw;
+  padding: 0 15px;
 }
 
-.nav-wrapper {
-  padding: 0;
-  margin: 0;
+.nav {
+  &-wrapper {
+    padding: 0;
+    margin: 0;
+
+    .logo {
+      margin: 0;
+    }
+  }
 }
 
 .row {
   padding-top: 15px;
-}
-
-.cases {
-  height: 482px;
-  overflow: hidden;
-  overflow-y: scroll;
-}
-
-.cases-country {
   display: flex;
+  flex-direction: row;
+
+  &__cases {
+    height: 80vh;
+      overflow: hidden;
+      font-size: 22px;
+      display: flex;
+      flex-direction: column;
+    
+    .by-country {
+      height: 85%;
+      overflow-y: scroll;
+    }
+    .cases-country {
+      display: flex;
+    }
+
+    .country {
+      padding-left: 10px;
+      flex: 1 0 60%;
+      align-items: center;
+    }
+    
+    .confirmed {
+      text-align: right;
+      flex: 1 0 40%;
+      align-items: center;
+    }
+
+    .switcher {
+      font-size: 15px;
+      text-align: center;
+    }
+
+    .last-update {
+      height: 15%;
+      margin-top: 15px;
+      text-align: center;
+    }
+  }
+
+  &__map {
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    .map-integrate {
+      height: 85%;
+    }
+
+    .switcher {
+      font-size: 15px;
+      text-align: center;
+    }
+
+    .footer {
+      height: 15%;
+      margin-top: 15px;
+    }
+  }
+
+  &__global {
+    .deskboard {
+      display: flex;
+      flex-direction: column;
+      height: 45%;
+      .global {
+        height: 30%;
+        text-align: center;
+      }
+      .switcher {
+        text-align: center;
+      }
+    }
+
+  
+
+    .graph {
+      height: 55%;
+      padding: 15px;
+    }
+  }
 }
 
-.country {
-  padding-left: 10px;
-  flex: 1 1 50%;
-  align-items: center;
-}
 
-.confirmed {
-  text-align: right;
-  flex: 1 1 50%;
-  align-items: center;
-}
+
+
+
+

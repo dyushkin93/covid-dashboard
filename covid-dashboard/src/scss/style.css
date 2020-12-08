@@ -1,5 +1,6 @@
-.logo {
-  margin: 0;
+.container {
+  min-width: 100vw;
+  padding: 0 15px;
 }
 
 .nav-wrapper {
@@ -7,39 +8,123 @@
   margin: 0;
 }
 
-.row {
-  padding-top: 15px;
+.nav-wrapper .logo {
+  margin: 0;
 }
 
-.cases {
-  height: 482px;
+.row {
+  padding-top: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.row__cases {
+  height: 80vh;
   overflow: hidden;
+  font-size: 22px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.row__cases .by-country {
+  height: 85%;
   overflow-y: scroll;
 }
 
-.cases-country {
+.row__cases .cases-country {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
 
-.country {
+.row__cases .country {
   padding-left: 10px;
   -webkit-box-flex: 1;
-      -ms-flex: 1 1 50%;
-          flex: 1 1 50%;
+      -ms-flex: 1 0 60%;
+          flex: 1 0 60%;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
 }
 
-.confirmed {
+.row__cases .confirmed {
   text-align: right;
   -webkit-box-flex: 1;
-      -ms-flex: 1 1 50%;
-          flex: 1 1 50%;
+      -ms-flex: 1 0 40%;
+          flex: 1 0 40%;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.row__cases .switcher {
+  font-size: 15px;
+  text-align: center;
+}
+
+.row__cases .last-update {
+  height: 15%;
+  margin-top: 15px;
+  text-align: center;
+}
+
+.row__map {
+  height: 80vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.row__map .map-integrate {
+  height: 85%;
+}
+
+.row__map .switcher {
+  font-size: 15px;
+  text-align: center;
+}
+
+.row__map .footer {
+  height: 15%;
+  margin-top: 15px;
+}
+
+.row__global .deskboard {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 45%;
+}
+
+.row__global .deskboard .global {
+  height: 30%;
+  text-align: center;
+}
+
+.row__global .deskboard .switcher {
+  text-align: center;
+}
+
+.row__global .graph {
+  height: 55%;
+  padding: 15px;
 }
 /*# sourceMappingURL=style.css.map */
