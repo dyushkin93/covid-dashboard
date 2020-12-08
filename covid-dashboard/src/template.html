@@ -6,6 +6,44 @@
   <title>COVID-19 Dashboard</title>
 </head>
 <body>
+  <div class="container">
+    <nav class="nav">
+      <div class="nav-wrapper red darken-4">
+        <h2 class="logo center">***** Dashboard</h2>
+      </div>
+    </nav>
+
+    <div class="row">
+      <div id="cases" class="row__cases col s2">
+        <div id="by-country" class="by-country grey lighten-2"></div>
+        <div id="switcher" class="switcher teal lighten-2">
+          <span id="cases">Cases</span> / <span id="death">Death</span> / <span id="recovered">Recovered</span>
+        </div>
+        <div class="last-update red lighten-2">Last Update<br> <span id="last-update">2020/20/04 4:20</span></div>
+      </div>
+      <div id="map" class="row__map col s7">
+        <div class="map-integrate green lighten-2">
+        </div>
+        <div id="map-switcher" class="switcher teal lighten-2">
+          <span id="cases">Cases</span> / <span id="death">Death</span> / <span id="recovered">Recovered</span>
+        </div>
+        <div class="footer purple lighten-2"></div>
+        </div>
+      <div id="global" class="row__global col s4">
+        <div class="deskboard">
+          <div id="global-cases" class="global global-cases blue lighten-2">Global Cases <span id="cases-count">666</span></div>
+          <div id="global-death" class="global global-death blue accent-2">Global Deaths <span id="death-count">666</span></div>
+          <div id="global-revovered" class="global global-recovered blue darken-2">Global Recovered <span id="recovered-count">666</span></div>
+          <div id="deskboard-switcher" class="switcher teal lighten-2">
+            <span id="all-time">All time</span> / <span id="last-day">Last day </span> / <span id="total">Total</span> / <span id="total">Cases per 100k</span>
+          </div>
+        </div>
+        <div class="graph yellow lighten-2">PLACE FOR GRAPH</div>
+      </div>
+    </div>
+
+    </div>
+  </div>
   
 </body>
 </html>
