@@ -17,17 +17,17 @@ export default class App {
     this.units = "absolute";
 
     // initialisation of GlobalData block
-    // this.globalDataBlock = new GlobalDataBlock(this.globalData, this.globalPopulation100k);
-    // this.globalDataBlock.getCases(this.period, this.units)
+    this.globalDataBlock = new GlobalDataBlock(this.globalData[0], this.globalPopulation100k);
     
     // initialisation of Chart block
     this.chart = new CovidChart(this.globalData, this.globalPopulation100k);
-    this.chart.init();
+    
+    /* sample to call this method
     this.chart.setNewData({
+      covidData: this.byCountryTimeline[178],
       typeOfData: "deaths",
       units: "relative"
-    })
-
+    })*/
 
   }
 }

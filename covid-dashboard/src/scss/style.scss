@@ -91,12 +91,24 @@
       }
     }
 
-  
-
-    .graph {
-      height: 55%;
-      padding: 15px;
+    .global {
+      p {
+        margin: .2em 0;
+        font-size: 2em;
+      }
     }
+  }
+}
+
+.graph {
+  position: relative;
+  height: 55%;
+  padding: 15px;
+
+  .chart-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
   }
 }
 
