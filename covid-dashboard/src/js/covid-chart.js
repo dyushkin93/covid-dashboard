@@ -57,7 +57,7 @@ export default class CovidChart {
 
   set dataArray(array) {
     this.cases = [];
-    this.death = [];
+    this.deaths = [];
     this.recovered = [];
 
     array.forEach(elem => {
@@ -68,29 +68,45 @@ export default class CovidChart {
     })
   }
 
+  /**
+   * 
+   * @param {Object} param0
+   * @param {Array} param0.covidData
+   * @param {string} param0.typeOfData
+   * @param {string} param0.units
+   */
   setNewData({covidData, typeOfData, units}) {
-    if (dataArray) {
+    if (covidData) {
       this.dataArray = covidData.data.timeline;
       this.population = covidData.data.population;
     }
     
     if (typeOfData) {
       this.typeOfData = typeOfData;
+      this.dataToShow = this[this.typeOfData];
     }
 
-    if (units === "absolute") {
+    if (units === "relative") {
       this.dataToShow = this.dataToShow.map(elem => {
-        return parseInt((elem / this.population), 10);
+        return ((elem / this.population).toFixed(2));
       })
+    } else if (units === "absolute") {
+      this.dataToShow = this[this.typeOfData];
     }
 
-    this.init();
+    this.chart.data.labels = this.timeline;
+    this.chart.data.datasets.forEach((dataset) => {
+        dataset.data = this.dataToShow;
+    });
+    this.chart.update();
   }
 
   init() {
     this.options.data.labels = this.timeline;
     this.options.data.datasets.data = this.dataToShow;
     this.chart = new Chart(this.ctx, this.options);
+    console.log(this.chart.data)
+
   }
 
 }

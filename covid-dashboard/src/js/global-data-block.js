@@ -1,6 +1,7 @@
 export default class GlobalDataBlock {
   constructor(globalData, population) {
-    this.globalData = globalData[0];
+    this.globalData = globalData;
+    console.log(globalData)
     this.population100k = population;
 
     // elements where data should be exported

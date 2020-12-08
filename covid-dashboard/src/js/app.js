@@ -6,6 +6,7 @@ export default class App {
     this.globalData = globalData.data;
     
     this.byCountryData = byCountryData.data;
+
     this.byCountryTimeline = byCountryTimeline;
     
     this.globalPopulation100k = 7700000000 / 100000;
@@ -14,15 +15,18 @@ export default class App {
 
     // units to show in blocks "absolute" || "relative"
     this.units = "absolute";
-    console.log(this.byCountryTimeline)
 
     // initialisation of GlobalData block
     // this.globalDataBlock = new GlobalDataBlock(this.globalData, this.globalPopulation100k);
     // this.globalDataBlock.getCases(this.period, this.units)
     
     // initialisation of Chart block
-    // this.chart = new CovidChart(this.globalData, this.globalPopulation100k)
-
+    this.chart = new CovidChart(this.globalData, this.globalPopulation100k);
+    this.chart.init();
+    this.chart.setNewData({
+      typeOfData: "deaths",
+      units: "relative"
+    })
 
 
   }
