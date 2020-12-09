@@ -22,7 +22,7 @@
   &__cases {
     height: 80vh;
       overflow: hidden;
-      font-size: 22px;
+      font-size: 20px;
       display: flex;
       flex-direction: column;
     
@@ -30,20 +30,19 @@
       height: 85%;
       overflow-y: scroll;
     }
-    .cases-country {
+    .country-cell {
       display: flex;
     }
 
     .country {
       padding-left: 10px;
       flex: 1 0 60%;
-      align-items: center;
     }
     
     .confirmed {
       text-align: right;
       flex: 1 0 40%;
-      align-items: center;
+      color: red;
     }
 
     .switcher {
@@ -91,11 +90,15 @@
       }
     }
 
-  
-
     .graph {
+      display: flex;
+      flex-direction: column;
       height: 55%;
       padding: 15px;
+      padding: 15px 0 0 0;
+    }
+    .graph-body {
+      height: 100%;
     }
   }
 }
