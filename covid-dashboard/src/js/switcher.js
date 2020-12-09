@@ -15,9 +15,7 @@ export default class TypesAndUnits {
       isAbsolute: true,
       relative: false,
     };
-  }
 
-  getType() {
     this.switcher.addEventListener('click', (e) => {
       if (e.target.id === this.cases.id) {
         this.properties.isCases = true;
@@ -40,6 +38,7 @@ export default class TypesAndUnits {
         console.log('rec');
         console.log(this.properties);
       }
+      this.getType();
     });
 
     this.mapSwitcher.addEventListener('click', (e) => {
@@ -61,6 +60,7 @@ export default class TypesAndUnits {
         this.properties.isRecovered = true;
         console.log('rec');
       }
+      this.getType();
     });
 
     this.deskBoardSwitcher.addEventListener('click', (e) => {
@@ -68,7 +68,9 @@ export default class TypesAndUnits {
         this.properties.relative = !this.properties.relative;
       }
     });
+  }
 
+  Type() {
     if (this.properties.isCases) {
       console.log('a');
       return 'cases';
