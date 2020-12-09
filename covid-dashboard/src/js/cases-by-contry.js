@@ -11,29 +11,28 @@ export default class CasesByCountry {
   }
 
   createCountryCases(type) {
-    if (type === 'cases') {
-      this.countryBlock.innerHTML = '';
-      this.byCountryData.forEach((el) => {
-        this.countryCases = create('div', 'confirmed', `${el.latest_data.confirmed}`);
-        this.country = create('div', 'country', `${el.name}`);
-        this.countryCell = create('div', 'country-cell', [this.countryCases, this.country], this.countryBlock, ['data-key', `${el.code}`]);
-      });
-    }
     if (type === 'death') {
+      console.log(type);
       this.countryBlock.innerHTML = '';
       this.byCountryData.forEach((el) => {
         this.countryCases = create('div', 'confirmed', `${el.latest_data.deaths}`);
         this.country = create('div', 'country', `${el.name}`);
         this.countryCell = create('div', 'country-cell', [this.countryCases, this.country], this.countryBlock, ['data-key', `${el.code}`]);
       });
-    }
-    if (type === 'recovered') {
+    } else if (type === 'recovered') {
+      console.log(type);
       this.countryBlock.innerHTML = '';
       this.byCountryData.forEach((el) => {
         this.countryCases = create('div', 'confirmed', `${el.latest_data.recovered}`);
         this.country = create('div', 'country', `${el.name}`);
         this.countryCell = create('div', 'country-cell', [this.countryCases, this.country], this.countryBlock, ['data-key', `${el.code}`]);
       });
-    }
+    } else console.log(type);
+    this.countryBlock.innerHTML = '';
+    this.byCountryData.forEach((el) => {
+      this.countryCases = create('div', 'confirmed', `${el.latest_data.confirmed}`);
+      this.country = create('div', 'country', `${el.name}`);
+      this.countryCell = create('div', 'country-cell', [this.countryCases, this.country], this.countryBlock, ['data-key', `${el.code}`]);
+    });
   }
 }

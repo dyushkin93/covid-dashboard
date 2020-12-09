@@ -1,89 +1,3 @@
-// const cases = document.getElementById('cases');
-// const death = document.getElementById('death');
-// const recovered = document.getElementById('recovered');
-// const switcher = document.getElementById('switcher');
-// const mapSwitcher = document.getElementById('map-switcher');
-// const deskBoardSwitcher = document.getElementById('deskboard-switcher');
-// const units = document.getElementById('units');
-
-// const properties = {
-//   isCases: true,
-//   isDeath: false,
-//   isRecovered: false,
-//   isAbsolute: true,
-//   relative: false,
-// };
-
-// switcher.addEventListener('click', (e) => {
-//   if (e.target.id === cases.id) {
-//     properties.isCases = true;
-//     properties.isDeath = false;
-//     properties.isRecovered = false;
-//     console.log('cases');
-//     console.log(properties);
-//   }
-//   if (e.target.id === death.id) {
-//     properties.isCases = false;
-//     properties.isDeath = true;
-//     properties.isRecovered = false;
-//     console.log('death');
-//     console.log(properties);
-//   }
-//   if (e.target.id === recovered.id) {
-//     properties.isCases = false;
-//     properties.isDeath = false;
-//     properties.isRecovered = true;
-//     console.log('rec');
-//     console.log(properties);
-//   }
-// });
-
-// mapSwitcher.addEventListener('click', (e) => {
-//   if (e.target.id === cases.id) {
-//     properties.isCases = true;
-//     properties.isDeath = false;
-//     properties.isRecovered = false;
-//     console.log('cases');
-//   }
-//   if (e.target.id === death.id) {
-//     properties.isCases = false;
-//     properties.isDeath = true;
-//     properties.isRecovered = false;
-//     console.log('death');
-//   }
-//   if (e.target.id === recovered.id) {
-//     properties.isCases = false;
-//     properties.isDeath = false;
-//     properties.isRecovered = true;
-//     console.log('rec');
-//   }
-// });
-
-// deskBoardSwitcher.addEventListener('click', (e) => {
-//   if (e.target === units) {
-//     properties.relative = !properties.relative;
-//   }
-// });
-
-// function getType() {
-//   if (properties.isCases) {
-//     return 'cases';
-//   }
-//   if (properties.isDeath) {
-//     return 'death';
-//   }
-//   console.log('asd');
-//   return 'recovered';
-// }
-
-// function getUnits() {
-//   if (properties.isAbsolute) {
-//     return 'abolute';
-//   } return 'relative';
-// }
-
-// export { getType, getUnits };
-
 export default class TypesAndUnits {
   constructor() {
     this.cases = document.getElementById('cases');
@@ -154,13 +68,16 @@ export default class TypesAndUnits {
         this.properties.relative = !this.properties.relative;
       }
     });
+
     if (this.properties.isCases) {
+      console.log('a');
       return 'cases';
     }
     if (this.properties.isDeath) {
+      console.log('b');
       return 'death';
     }
-    console.log('asd');
+    console.log('c');
     return 'recovered';
   }
 }
