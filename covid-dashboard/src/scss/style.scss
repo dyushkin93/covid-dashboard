@@ -14,6 +14,11 @@
   }
 }
 
+.row .col.s2 {
+  padding: 0;
+  margin: 0 0.75rem;
+}
+
 .row {
   padding-top: 15px;
   display: flex;
@@ -25,29 +30,76 @@
       font-size: 20px;
       display: flex;
       flex-direction: column;
-    
-    .by-country {
-      height: 85%;
-      overflow-y: scroll;
-    }
-    .country-cell {
-      display: flex;
-    }
 
-    .country {
-      padding-left: 10px;
-      flex: 1 0 60%;
-    }
-    
-    .confirmed {
-      text-align: right;
-      flex: 1 0 40%;
-      color: red;
-    }
+      .cases-container {
+        height: 85%;
+        display: flex;
+        flex-direction: column;
 
+        .cases-search {
+          display: flex;
+          height: 10%;
+          align-items: center;
+          border: blue solid 1px;
+          border-radius: 15px;
+          margin: 10px;
+          overflow: hidden;
+          background: rgba(0, 0, 0, 0.3);
+  
+          .search-country {
+            color: black;
+            padding-left: 8px;
+            border: none;
+            margin: 0;
+            height: 100%;
+          }
+          .search-country::placeholder {
+            color: rgba(0, 0, 0, 0.3);
+          }
+  
+          .btn-close {
+            padding-right: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+            height: 100%;
+            line-height: 1.5;
+          }
+  
+          .btn-close:hover {
+            transform: rotateX(180deg);
+            transition: 0.3s;
+            color: darkred;
+          }
+        }
+
+        .by-country {
+          height: 90%;
+          overflow-y: scroll;
+        }
+        .country-cell {
+          display: flex;
+          flex-direction: r;
+        }
+    
+        .country {
+          padding-left: 10px;
+          flex: 1 0 55%;
+        }
+
+        .confirmed {
+          text-align: right;
+          flex: 1 0 45%;
+          color: red;
+        }
+      }
     .switcher {
       font-size: 15px;
       text-align: center;
+      cursor: default;
+      
+      span {
+        cursor: pointer;
+      }
     }
 
     .last-update {
@@ -68,6 +120,11 @@
     .switcher {
       font-size: 15px;
       text-align: center;
+      cursor: default;
+
+      span {
+        cursor: pointer;
+      }
     }
 
     .footer {
@@ -87,6 +144,11 @@
       }
       .switcher {
         text-align: center;
+        cursor: default;
+
+      span {
+          cursor: pointer;
+        }
       }
     }
 

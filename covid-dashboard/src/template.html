@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <title>COVID-19 Dashboard</title>
 </head>
 <body>
@@ -14,11 +15,15 @@
     </nav>
 
     <div class="row">
-      <div id="cases" class="row__cases col s2">
-        <div id="by-country" class="by-country grey lighten-2"></div>
-        <div id="switcher" class="switcher teal lighten-2">
-          <span id="cases">Cases</span> / <span id="death">Death</span> / <span id="recovered">Recovered</span>
+      <div id="cases" class="row__cases col s2 grey lighten-2">
+        <div class="cases-container">
+          <div class="cases-search"><input id="search-country" class="search-country" type="search" placeholder="Find your country"><i class="material-icons btn-close">close</i></div>
+          <div id="by-country" class="by-country"></div>
+          <div id="switcher" class="switcher teal lighten-2">
+            <span id="cases">Cases</span> / <span id="death">Death</span> / <span id="recovered">Recovered</span>
+          </div>
         </div>
+        
         <div class="last-update red lighten-2">Last Update<br> <span id="last-update">2020/20/04 4:20</span></div>
       </div>
       <div id="map" class="row__map col s7">

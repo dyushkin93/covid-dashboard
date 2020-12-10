@@ -18,8 +18,6 @@ async function main() {
     const byCountryDataUrl = 'https://corona-api.com/countries';
     const byCountryRes = await fetch(byCountryDataUrl);
     byCountryData = await byCountryRes.json();
-    const find = byCountryData.data.find((e) => e.name === 'Uzbekistan');
-    console.log(find.latest_data.confirmed);
     console.log(byCountryData);
 
     byCountryData.data.forEach(async (country) => {
