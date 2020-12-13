@@ -52,7 +52,6 @@ export default class CasesByCountry {
             this.countryCell = create('div', 'country-cell', [this.countryCases, this.country], this.countryBlock, ['data-key', `${el.code}`]);
           });
       } else if (type === 'recovered') {
-        let i = 0;
         this.countryBlock.innerHTML = '';
         data.sort((a, b) => b.latest_data.recovered - a.latest_data.recovered)
           .forEach((el) => {
