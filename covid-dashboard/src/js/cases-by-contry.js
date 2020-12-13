@@ -49,7 +49,7 @@ export default class CasesByCountry {
           .forEach((el) => {
             this.countryCases = create('div', 'confirmed', `${el.latest_data.deaths}`);
             this.country = create('div', 'country', `${el.name}`);
-            this.flag = create('img', 'flag', null, null, ['src', `../assets/img/flags/${el.code.toLowerCase()}`], ['alt', `${el.code}`]);
+            this.flag = create('img', 'flag right', null, null, ['src', `../assets/img/flags/${el.code.toLowerCase()}`], ['alt', `${el.code}`]);
             this.countryCell = create('div', 'country-cell', [this.countryCases, this.country, this.flag], this.countryBlock, ['data-key', `${el.code}`]);
           });
         return this.countryCell;
@@ -59,7 +59,7 @@ export default class CasesByCountry {
           .forEach((el) => {
             this.countryCases = create('div', 'confirmed', `${el.latest_data.recovered}`);
             this.country = create('div', 'country', `${el.name}`);
-            this.flag = create('img', 'flag', null, null, ['src', `../assets/img/flags/${el.code.toLowerCase()}`], ['alt', `${el.code}`]);
+            this.flag = create('img', 'flag right', null, null, ['src', `../assets/img/flags/${el.code.toLowerCase()}`], ['alt', `${el.code}`]);
             this.countryCell = create('div', 'country-cell', [this.countryCases, this.country, this.flag], this.countryBlock, ['data-key', `${el.code}`]);
           });
         return this.countryCell;
@@ -68,7 +68,7 @@ export default class CasesByCountry {
         .forEach((el) => {
           this.countryCases = create('div', 'confirmed', `${el.latest_data.confirmed}`);
           this.country = create('div', 'country', `${el.name}`);
-          this.flag = create('img', 'flag', null, null, ['src', `../assets/img/flags/${el.code.toLowerCase()}.svg`], ['alt', `${el.code}`]);
+          this.flag = create('img', 'flag right', null, null, ['src', `../assets/img/flags/${el.code.toLowerCase()}.svg`], ['alt', `${el.code}`]);
           this.countryCell = create('div', 'country-cell', [this.countryCases, this.country, this.flag], this.countryBlock, ['data-key', `${el.code}`]);
         });
       return this.countryCell;
