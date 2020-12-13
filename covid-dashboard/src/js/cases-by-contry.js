@@ -49,48 +49,61 @@ export default class CasesByCountry {
           .forEach((el) => {
             this.countryCases = create('div', 'confirmed', `${el.latest_data.deaths}`);
             this.country = create('div', 'country', `${el.name}`);
-            this.countryCell = create('div', 'country-cell', [this.countryCases, this.country], this.countryBlock, ['data-key', `${el.code}`]);
+            this.flag = create('img', 'flag', null, null, ['src', `../assets/img/flags/${el.code.toLowerCase()}`], ['alt', `${el.code}`]);
+            this.countryCell = create('div', 'country-cell', [this.countryCases, this.country, this.flag], this.countryBlock, ['data-key', `${el.code}`]);
           });
-      } else if (type === 'recovered') {
+        return this.countryCell;
+      } if (type === 'recovered') {
         this.countryBlock.innerHTML = '';
         data.sort((a, b) => b.latest_data.recovered - a.latest_data.recovered)
           .forEach((el) => {
             this.countryCases = create('div', 'confirmed', `${el.latest_data.recovered}`);
             this.country = create('div', 'country', `${el.name}`);
-            this.countryCell = create('div', 'country-cell', [this.countryCases, this.country], this.countryBlock, ['data-key', `${el.code}`]);
+            this.flag = create('img', 'flag', null, null, ['src', `../assets/img/flags/${el.code.toLowerCase()}`], ['alt', `${el.code}`]);
+            this.countryCell = create('div', 'country-cell', [this.countryCases, this.country, this.flag], this.countryBlock, ['data-key', `${el.code}`]);
           });
-      } else this.countryBlock.innerHTML = '';
+        return this.countryCell;
+      } this.countryBlock.innerHTML = '';
       data.sort((a, b) => b.latest_data.confirmed - a.latest_data.confirmed)
         .forEach((el) => {
           this.countryCases = create('div', 'confirmed', `${el.latest_data.confirmed}`);
           this.country = create('div', 'country', `${el.name}`);
-          this.countryCell = create('div', 'country-cell', [this.countryCases, this.country], this.countryBlock, ['data-key', `${el.code}`]);
+          this.flag = create('img', 'flag', null, null, ['src', `../assets/img/flags/${el.code.toLowerCase()}.svg`], ['alt', `${el.code}`]);
+          this.countryCell = create('div', 'country-cell', [this.countryCases, this.country, this.flag], this.countryBlock, ['data-key', `${el.code}`]);
         });
-    } else if (units === 'relative') {
+      return this.countryCell;
+    } if (units === 'relative') {
       if (type === 'death') {
         this.countryBlock.innerHTML = '';
         data.sort((a, b) => b.latest_data.deaths - a.latest_data.deaths)
           .forEach((el) => {
             this.countryCases = create('div', 'confirmed', `${el.latest_data.deaths !== 0 ? Math.round((el.latest_data.deaths / el.population) * 100000, -2) : 0}`);
             this.country = create('div', 'country', `${el.name}`);
-            this.countryCell = create('div', 'country-cell', [this.countryCases, this.country], this.countryBlock, ['data-key', `${el.code}`]);
+            this.flag = create('img', 'flag', null, null, ['src', `../assets/img/flags/${el.code.toLowerCase()}`], ['alt', `${el.code}`]);
+            this.countryCell = create('div', 'country-cell', [this.countryCases, this.country, this.flag], this.countryBlock, ['data-key', `${el.code}`]);
           });
-      } else if (type === 'recovered') {
+        return this.countryCell;
+      } if (type === 'recovered') {
         this.countryBlock.innerHTML = '';
         data.sort((a, b) => b.latest_data.deaths - a.latest_data.deaths)
           .forEach((el) => {
             this.countryCases = create('div', 'confirmed', `${el.latest_data.recovered !== 0 ? Math.round((el.latest_data.recovered / el.population) * 100000, -2) : 0}`);
             this.country = create('div', 'country', `${el.name}`);
-            this.countryCell = create('div', 'country-cell', [this.countryCases, this.country], this.countryBlock, ['data-key', `${el.code}`]);
+            this.flag = create('img', 'flag', null, null, ['src', `../assets/img/flags/${el.code.toLowerCase()}`], ['alt', `${el.code}`]);
+            this.countryCell = create('div', 'country-cell', [this.countryCases, this.country, this.flag], this.countryBlock, ['data-key', `${el.code}`]);
           });
-      } else this.countryBlock.innerHTML = '';
+        return this.countryCell;
+      } this.countryBlock.innerHTML = '';
       data.sort((a, b) => b.latest_data.deaths - a.latest_data.deaths)
         .forEach((el) => {
           this.countryCases = create('div', 'confirmed', `${el.latest_data.confirmed !== 0 ? Math.round((el.latest_data.confirmed / el.population) * 100000, -2) : 0}`);
           this.country = create('div', 'country', `${el.name}`);
-          this.countryCell = create('div', 'country-cell', [this.countryCases, this.country], this.countryBlock, ['data-key', `${el.code}`]);
+          this.flag = create('img', 'flag', null, null, ['src', `../assets/img/flags/${el.code.toLowerCase()}`], ['alt', `${el.code}`]);
+          this.countryCell = create('div', 'country-cell', [this.countryCases, this.country, this.flag], this.countryBlock, ['data-key', `${el.code}`]);
         });
+      return this.countryCell;
     }
+    return this.countryCell;
   }
 
   updateBlock() {
