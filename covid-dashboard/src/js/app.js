@@ -7,6 +7,7 @@ export default class App {
     this.globalData = globalData.data;
 
     this.byCountryData = byCountryData.data;
+
     this.byCountryTimeline = byCountryTimeline;
 
     this.cases = document.getElementById('cases');
@@ -29,10 +30,16 @@ export default class App {
     this.casesByCountry = new CasesByCountry(byCountryData).updateBlock();
 
     // initialisation of GlobalData block
-    // this.globalDataBlock = new GlobalDataBlock(this.globalData, this.globalPopulation100k);
-    // this.globalDataBlock.getCases(this.period, this.units)
+    this.globalDataBlock = new GlobalDataBlock(this.globalData[0], this.globalPopulation100k);
 
     // initialisation of Chart block
-    // this.chart = new CovidChart(this.globalData, this.globalPopulation100k)
+    this.chart = new CovidChart(this.globalData, this.globalPopulation100k);
+
+    /* sample to call this method
+    this.chart.setNewData({
+      covidData: this.byCountryTimeline[178],
+      typeOfData: "deaths",
+      units: "relative"
+    }) */
   }
 }

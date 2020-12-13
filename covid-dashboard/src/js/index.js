@@ -1,6 +1,7 @@
 import 'materialize-css/dist/css/materialize.min.css';
 import M from 'materialize-css/dist/js/materialize.min';
 import 'normalize-css';
+import create from './helpers/create';
 import '../scss/style.scss';
 import App from './app';
 
@@ -20,7 +21,14 @@ async function main() {
     byCountryData = await byCountryRes.json();
     console.log(byCountryData);
 
-    byCountryData.data.forEach(async (country) => {
+    for (let i = 0; i < byCountryData.data.length; i++) {
+      const countryUrl = `https://corona-api.com/countries/${byCountryData.data[i].code}`;
+      const countryRes = await fetch(countryUrl);
+      const countryTimeline = await countryRes.json();
+      byCountryTimeline.push(countryTimeline);
+    }
+
+    await byCountryData.data.forEach(async (country) => {
       const countryUrl = `https://corona-api.com/countries/${country.code}`;
       const countryRes = await fetch(countryUrl);
       const countryTimeline = await countryRes.json();
