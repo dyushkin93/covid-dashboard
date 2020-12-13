@@ -26,7 +26,7 @@ export default class App {
     // units to show in byCountryCases block
 
     // initialisation of CasesByCountry block
-    this.casesByCountry = new CasesByCountry(byCountryData).updateCountryCases();
+    this.casesByCountry = new CasesByCountry(byCountryData).updateBlock();
 
     // initialisation of GlobalData block
     // this.globalDataBlock = new GlobalDataBlock(this.globalData, this.globalPopulation100k);
