@@ -56,20 +56,6 @@
           .search-country::placeholder {
             color: rgba(0, 0, 0, 0.3);
           }
-  
-          .btn-close {
-            padding-right: 8px;
-            cursor: pointer;
-            transition: 0.3s;
-            height: 100%;
-            line-height: 1.5;
-          }
-  
-          .btn-close:hover {
-            transform: rotateX(180deg);
-            transition: 0.3s;
-            color: darkred;
-          }
         }
 
         .by-country {
