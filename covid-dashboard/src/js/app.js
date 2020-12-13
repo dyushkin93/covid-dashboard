@@ -2,14 +2,8 @@ import GlobalDataBlock from "./global-data-block";
 import CovidChart from "./covid-chart";
 
 export default class App {
-  constructor(globalData, byCountryData, byCountryTimeline) {
-    this.globalData = globalData.data;
-    
-    this.byCountryData = byCountryData.data;
-
-    this.byCountryTimeline = byCountryTimeline;
-    
-    this.globalPopulation100k = 7700000000 / 100000;
+  constructor(covidData) {
+    this.covidData = covidData;
     // period to show in blocks "total" || "lastDay"
     this.period = "total";
 
@@ -17,10 +11,14 @@ export default class App {
     this.units = "absolute";
 
     // initialisation of GlobalData block
-    this.globalDataBlock = new GlobalDataBlock(this.globalData[0], this.globalPopulation100k);
+    this.globalDataBlock = new GlobalDataBlock(this.covidData);
+    
+    this.globalDataBlock.switchData({
+      country: "uz"
+    })
     
     // initialisation of Chart block
-    this.chart = new CovidChart(this.globalData, this.globalPopulation100k);
+    this.chart = new CovidChart(this.covidData);
     
     /* sample to call this method
     this.chart.setNewData({

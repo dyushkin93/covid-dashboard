@@ -1,8 +1,7 @@
 export default class GlobalDataBlock {
-  constructor(covidData, population) {
+  constructor(covidData) {
     this.covidData = covidData;
-    this.globalPopulation = population;
-    this.countryPopulation = this.globalPopulation;
+    this.countryToShow = this.covidData.world;
     this.units = "absolute";
     this.period = "total";
     // elements where data should be exported
@@ -17,30 +16,16 @@ export default class GlobalDataBlock {
     this.update()
   }
 
-  set covidData(dataArray) {
-    this.cases = dataArray.confirmed;
-    this.deaths = dataArray.deaths;
-    this.recovered = dataArray.recovered;
-    this.newCases = dataArray.new_confirmed;
-    this.newDeaths = dataArray.new_deaths;
-    this.newRecovered = dataArray.new_recovered;
-  }
-
   /**
    * 
-   * @param {Array} param0.covidData
+   * @param {String} param0.country
    * @param {"total"|"last"} param0.covidData
    * @param {"absolute"|"relative"} param0.units
    */
-  setNewData({covidData, period, units}) {
-    if (covidData) {
-      if (covidData.data) {
-        this.covidData = covidData.data.timeline[0];
-        this.countryPopulation = covidData.data.population / 100000;
-      } else {
-        this.covidData = covidData[0];
-        this.countryPopulation = this.globalPopulation;
-      }
+  switchData({country, period, units}) {
+    if (country) {
+      const countryCode = country.toUpperCase();
+      this.countryToShow = this.covidData[countryCode];
     }
 
     if (period) {
@@ -56,19 +41,19 @@ export default class GlobalDataBlock {
 
   update() {
     if (this.period === "total") {
-      this.casesToShow = this.cases;
-      this.deathsToShow = this.deaths;
-      this.recoveredToShow = this.recovered;
+      this.casesToShow = this.countryToShow.cases;
+      this.deathsToShow = this.countryToShow.deaths;
+      this.recoveredToShow = this.countryToShow.recovered;
     } else if (this.period === "last") {
-      this.casesToShow = this.newCases;
-      this.deathsToShow = this.newDeaths;
-      this.recoveredToShow = this.newRecovered;
+      this.casesToShow = this.countryToShow.newCases;
+      this.deathsToShow = this.countryToShow.newDeaths;
+      this.recoveredToShow = this.countryToShow.newRecovered;
     }
 
     if (this.units === "relative") {
-      this.casesToShow /= this.countryPopulation;
-      this.deathsToShow /= this.countryPopulation;
-      this.recoveredToShow /= this.countryPopulation;
+      this.casesToShow /= (this.countryToShow.population / 100000);
+      this.deathsToShow /= (this.countryToShow.population / 100000);
+      this.recoveredToShow /= (this.countryToShow.population / 100000);
     }
 
     this.casesElem.innerHTML = new Intl.NumberFormat("ru-RU").format(this.casesToShow);

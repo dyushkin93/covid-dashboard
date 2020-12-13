@@ -1,23 +1,18 @@
 import Chart from "chart.js";
 
 export default class CovidChart {
-  constructor(covidData, population) {
+  constructor(covidData) {
     this.chartElem = document.querySelector("#covid-chart");
     this.ctx = this.chartElem.getContext("2d");
+    this.covidData = covidData;
 
-    this.timeline = [];
-    this.cases = [];
-    this.deaths = [];
-    this.recovered = [];
-
-    this.dataArray = covidData;
-    this.globalPopulation = population;
-    this.countryPopulation = this.globalPopulation;
-
+    this.countryToShow = this.covidData.world;
     this.typeOfData = "cases";
     this.units = "absolute";
+    this.period = "last"
 
-    this.dataToShow = this.cases;
+    this.timeline = [];
+    this.dataToShow = [];
 
     this.options = {
       type: "bar",
@@ -66,58 +61,61 @@ export default class CovidChart {
         }
       }
     }
-
     this.chart = new Chart(this.ctx, this.options);
-  }
-
-  set dataArray(array) {
-    this.timeline = [];
-    this.cases = [];
-    this.deaths = [];
-    this.recovered = [];
-
-    array.forEach(elem => {
-      this.timeline.push(elem.date);
-      this.cases.push(elem.new_confirmed);
-      this.deaths.push(elem.new_deaths);
-      this.recovered.push(elem.new_recovered);
-    })
+    this.update();
   }
 
   /**
    * @param {Object} param0
-   * @param {Array} param0.covidData
+   * @param {String} param0.country
    * @param {("cases"|"deaths"|"recovered")} param0.typeOfData
    * @param {"absolute"|"relative"} param0.units
    */
-  setNewData({covidData, typeOfData, units}) {
-    console.log(this.chart)
-    if (covidData) {
-      if (covidData.data) {
-        this.covidData = covidData.data.timeline[0];
-        this.countryPopulation = covidData.data.population / 100000;
-      } else {
-        this.covidData = covidData[0];
-        this.countryPopulation = this.globalPopulation;
-      }
+  switchData({country, typeOfData, units, period}) {
+    if (country) {
+      const countryCode = country.toUpperCase();
+      this.countryToShow = this.covidData[countryCode];
     }
-    
+
     if (typeOfData) {
       this.typeOfData = typeOfData;
     }
-    this.dataToShow = this[this.typeOfData];
 
+    if (period) {
+      this.period = period;
+    }
+ 
     if (units) {
       this.units = units;
     }
 
-    if (this.units === "relative") {
-      this.dataToShow = this.dataToShow.map(elem => {
-        return ((elem / this.countryPopulation).toFixed(2));
-      })
-    } else if (this.units === "absolute") {
-      this.dataToShow = this[this.typeOfData];
-    }
+    this.update();   
+  }
+
+  update() {
+    this.timeline = [];
+    this.dataToShow = [];
+
+    this.countryToShow.timeline.forEach((day) => {
+      this.timeline.push(day.date);
+
+      let oneDayData = 0;
+
+      if (this.period === "total") {
+        oneDayData = day[this.typeOfData];
+      } else if (this.period === "last") {
+        const key = `new${this.typeOfData.charAt(0).toUpperCase() + this.typeOfData.slice(1)}`;
+        oneDayData = day[key];
+      }
+
+      if (this.units === "relative") {
+        oneDayData /= (this.countryToShow.population / 100000);
+      }
+
+      this.dataToShow.push(oneDayData);
+    });
+
+    console.log(this.dataToShow);
 
     this.chart.data.labels = this.timeline;
     this.chart.data.datasets.forEach((dataset) => {

@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href='https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.css' rel='stylesheet' />
   <title>COVID-19 Dashboard</title>
 </head>
 <body>
@@ -21,9 +22,8 @@
         </div>
         <div class="last-update red lighten-2">Last Update<br> <span id="last-update">2020/20/04 4:20</span></div>
       </div>
-      <div id="map" class="row__map col s7">
-        <div class="map-integrate green lighten-2">
-        </div>
+      <div class="row__map col s7">
+        <div id="map" class="map-integrate"></div>
         <div id="map-switcher" class="switcher teal lighten-2">
           <span id="cases">Cases</span> / <span id="death">Death</span> / <span id="recovered">Recovered</span>
         </div>
