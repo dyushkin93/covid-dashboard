@@ -64,18 +64,27 @@
         }
         .country-cell {
           display: flex;
-          flex-direction: r;
+          flex-direction: row;
+          align-items: center;
+          position: relative;
         }
     
         .country {
           padding-left: 10px;
-          flex: 1 0 55%;
+          flex: 0 1 33%
         }
 
         .confirmed {
           text-align: right;
-          flex: 1 0 45%;
           color: red;
+          flex: 0 1 33%
+        }
+
+        .flag {
+          height: 1rem;
+          width: 1.5rem;
+          position: absolute;
+          right: 10px;
         }
       }
     .switcher {
