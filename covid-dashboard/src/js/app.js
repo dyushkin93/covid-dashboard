@@ -1,5 +1,6 @@
 import GlobalDataBlock from "./global-data-block";
 import CovidChart from "./covid-chart";
+import CovidMap from "./map";
 
 export default class App {
   constructor(covidData) {
@@ -20,12 +21,9 @@ export default class App {
     // initialisation of Chart block
     this.chart = new CovidChart(this.covidData);
     
-    /* sample to call this method
-    this.chart.setNewData({
-      covidData: this.byCountryTimeline[178],
-      typeOfData: "deaths",
-      units: "relative"
-    })*/
+    // initialisation of Map
+    this.map = new CovidMap(this.covidData);
+    
 
   }
 }
