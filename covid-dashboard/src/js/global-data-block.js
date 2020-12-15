@@ -5,15 +5,15 @@ export default class GlobalDataBlock {
     this.units = "absolute";
     this.period = "total";
     // elements where data should be exported
-    this.casesElem = document.querySelector("#cases-count");
-    this.deathsElem = document.querySelector("#death-count");
-    this.recoveredElem = document.querySelector("#recovered-count");
+    this.casesElem = document.querySelector('#cases-count');
+    this.deathsElem = document.querySelector('#death-count');
+    this.recoveredElem = document.querySelector('#recovered-count');
 
     this.casesToShow;
     this.deathsToShow;
     this.recoveredToShow;
 
-    this.update()
+    this.update();
   }
 
   /**
@@ -31,7 +31,7 @@ export default class GlobalDataBlock {
     if (period) {
       this.period = period;
     }
- 
+
     if (units) {
       this.units = units;
     }
@@ -56,8 +56,8 @@ export default class GlobalDataBlock {
       this.recoveredToShow /= (this.countryToShow.population / 100000);
     }
 
-    this.casesElem.innerHTML = new Intl.NumberFormat("ru-RU").format(this.casesToShow);
-    this.deathsElem.innerHTML = new Intl.NumberFormat("ru-RU").format(this.deathsToShow);
-    this.recoveredElem.innerHTML = new Intl.NumberFormat("ru-RU").format(this.recoveredToShow);
+    this.casesElem.innerHTML = new Intl.NumberFormat('ru-RU').format(this.casesToShow);
+    this.deathsElem.innerHTML = new Intl.NumberFormat('ru-RU').format(this.deathsToShow);
+    this.recoveredElem.innerHTML = new Intl.NumberFormat('ru-RU').format(this.recoveredToShow);
   }
 }

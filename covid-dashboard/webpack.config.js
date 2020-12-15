@@ -1,6 +1,8 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -19,6 +21,11 @@ module.exports = {
     }),
 
     new webpack.HotModuleReplacementPlugin(),
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: path.resolve(__dirname, './src/assets'), to: path.resolve(__dirname, './dist/assets') },
+      ],
+    }),
   ],
 
   module: {

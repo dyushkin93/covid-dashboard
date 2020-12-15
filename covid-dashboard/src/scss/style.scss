@@ -1,119 +1,198 @@
-.container {
-  min-width: 100vw;
-  padding: 0 15px;
-}
-
-.nav {
-  &-wrapper {
-    padding: 0;
-    margin: 0;
-
-    .logo {
-      margin: 0;
-    }
-  }
-}
+$bg-op: rgba(0,0,0,0.5);
 
 .row {
-  padding-top: 15px;
-  display: flex;
-  flex-direction: row;
-
   &__cases {
-    height: 80vh;
-      overflow: hidden;
-      font-size: 22px;
+    display: flex;
+    flex-direction: column;
+    max-height: 80vh;
+    text-align: center;
+
+    .cases-container {
       display: flex;
       flex-direction: column;
-    
-    .by-country {
-      height: 85%;
-      overflow-y: scroll;
-    }
-    .cases-country {
-      display: flex;
+      max-height: 85%;
+      overflow: hidden;
+      background-color: $bg-op;
+
+      .cases-search {
+        margin: 0 auto;
+        width: 90%;
+        margin-top: 10px;
+
+        .search-country {
+          width: 90%;
+          opacity: 0.6;
+          transition: .2s all ease-in;
+
+          &:hover {
+            opacity: 1;
+            transition: .2s all ease-in;
+          }
+        }
+      }
     }
 
-    .country {
-      padding-left: 10px;
-      flex: 1 0 60%;
-      align-items: center;
-    }
-    
-    .confirmed {
-      text-align: right;
-      flex: 1 0 40%;
-      align-items: center;
+    .by-country {
+      max-height: 90%;
+      overflow-y: scroll;
+
+      .country-cell {
+        position: relative;
+        display: flex;
+       
+        .confirmed {
+          flex: 0 1 33%;
+          text-align: end;
+          color: darkred;
+        }
+
+        .country {
+          flex: 1 1 33%;
+          text-align: start;
+          padding-left: 10px;
+          max-width: 50%;
+        }
+
+        .flag {
+          position: absolute;
+          right: 15px;
+          height: 1rem;
+        }
+      }
     }
 
     .switcher {
-      font-size: 15px;
-      text-align: center;
+      cursor: default;
+      padding: 10px 0 5px 0;
     }
 
     .last-update {
-      height: 15%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 15%;
       margin-top: 15px;
-      text-align: center;
+      background-color: $bg-op;
     }
   }
 
   &__map {
-    height: 80vh;
     display: flex;
     flex-direction: column;
+    text-align: center;
+    height: 80vh;
+
     .map-integrate {
       height: 85%;
+      max-height: 85%;
+      background-color: $bg-op;
     }
 
     .switcher {
-      font-size: 15px;
-      text-align: center;
+      background-color: $bg-op;
+      cursor: default;
+      padding: 10px 0 5px 0;
     }
 
     .footer {
-      height: 15%;
+      min-height: 15%;
       margin-top: 15px;
+      background-color: $bg-op;
+      display: flex;
+      justify-content: flex-end;
+
+      .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .footer__contacts {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .footer-logo {
+        width: 50px;
+      }
     }
   }
 
   &__global {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    height: 80vh;
+
     .deskboard {
+      height: 45%;
+
+      p {
+        color: darkred;
+      }
+
+      li {
+        background-color: $bg-op;
+      }
+    }
+
+    .switcher {
+      cursor: default;
+      background-color: $bg-op;
+    }
+
+    .graph {
+      margin-top: 15px;
+      height: 55%;
+      background-color: $bg-op;
       display: flex;
       flex-direction: column;
-      height: 45%;
-      .global {
-        height: 30%;
-        text-align: center;
+      justify-content: space-between;
+
+      .chart-wrapper {
+        margin: 10px 5px;
+        height: 90%;
       }
+
       .switcher {
-        text-align: center;
-      }
-    }
-
-    .global {
-      p {
-        margin: .2em 0;
-        font-size: 2em;
+        background-color: transparent;
+        padding: 10px 0 5px 0;
       }
     }
   }
 }
 
-.graph {
-  position: relative;
-  height: 55%;
-  padding: 15px;
 
-  .chart-wrapper {
-    position: relative;
-    width: 100%;
-    height: 100%;
-  }
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
 }
-
-
-
-
-
-
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+::-webkit-scrollbar-thumb {
+  background: #e1e1e1;
+  border: 0px none #ffffff;
+  border-radius: 40px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ffffff;
+}
+::-webkit-scrollbar-thumb:active {
+  background: #898080;
+}
+::-webkit-scrollbar-track {
+  background: #666666;
+  border: 0px none #ffffff;
+  border-radius: 13px;
+}
+::-webkit-scrollbar-track:hover {
+  background: #666666;
+}
+::-webkit-scrollbar-track:active {
+  background: #333333;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}

@@ -1,14 +1,21 @@
-import GlobalDataBlock from "./global-data-block";
-import CovidChart from "./covid-chart";
+import GlobalDataBlock from './global-data-block';
+import CovidChart from './covid-chart';
+import CasesByCountry from './cases-by-contry';
 
 export default class App {
   constructor(covidData) {
     this.covidData = covidData;
     // period to show in blocks "total" || "lastDay"
-    this.period = "total";
+    this.period = 'total';
 
     // units to show in blocks "absolute" || "relative"
-    this.units = "absolute";
+    this.units = 'absolute';
+    console.log(this.byCountryTimeline);
+
+    // units to show in byCountryCases block
+
+    // initialisation of CasesByCountry block
+    this.casesByCountry = new CasesByCountry(byCountryData).updateBlock();
 
     // initialisation of GlobalData block
     this.globalDataBlock = new GlobalDataBlock(this.covidData);
@@ -25,7 +32,6 @@ export default class App {
       covidData: this.byCountryTimeline[178],
       typeOfData: "deaths",
       units: "relative"
-    })*/
-
+    }) */
   }
 }
