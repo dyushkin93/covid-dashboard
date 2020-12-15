@@ -3,7 +3,6 @@ import 'normalize-css';
 import create from './helpers/create';
 import '../scss/style.scss';
 import App from './app';
-import "./map"
 import getCovidData from './getCovidData';
 
 async function main() {

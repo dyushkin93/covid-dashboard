@@ -6,11 +6,14 @@ const countriesExceptions = ["AX", "AS", "AI", "AQ", "AW", "BQ", "IO", "BM", "BV
 "SH", "SX", "TV", "GS", "UM", "PS", "BL", "PM", "TO", "TC", "WF", "EH"];
 
 class Country {
-  constructor(code, name, population, coorditanes) {
+  constructor(code, name, population, coordinates) {
     this.code = code;
     this.name = name;
     this.population = population;
-    this.coorditanes = coorditanes;
+    this.coordinates = coordinates;
+    if (this.code === null) {
+      console.log(this.name)
+    }
     this.timeline = [];
   }
 
@@ -81,17 +84,9 @@ class Country {
  * @returns {Object}
  */
 export default async function getCovidData() {
-  const countriesListUrl = 'https://corona-api.com/countries';
+  const countriesListUrl = 'https://disease.sh/v3/covid-19/countries';
   const countriesListRes = await fetch(countriesListUrl);
-  /**
-   * @typedef {Array} countriesList - array of countries
-   * @property {String} data[].code- country code
-   * @property {Object} data[].coorditanes - country coordinates
-   * @property {String} data[].name- country name
-   * @property {String} data[].population - country population
-   */
-  let countriesList = await countriesListRes.json();
-  countriesList = countriesList.data;
+  const countriesList = await countriesListRes.json();
 
   const covidData = {
     world: new Country("all", "world", 7700000000, null)
@@ -101,15 +96,16 @@ export default async function getCovidData() {
 
   for (let i = 0; i < countriesList.length; i++) {
     const country = countriesList[i];
-    if (!countriesExceptions.includes(country.code)) {
-      covidData[country.code] = new Country(
-        country.code,
-        country.name,
+    if (!countriesExceptions.includes(country.countryInfo.iso2)
+    && country.countryInfo.iso2 !== null) {
+      covidData[country.countryInfo.iso2] = new Country(
+        country.countryInfo.iso2,
+        country.country,
         country.population,
-        country.coordinates
+        [country.countryInfo.long, country.countryInfo.lat]
       )
   
-      await covidData[country.code].setTimeline();
+      await covidData[country.countryInfo.iso2].setTimeline();
     }
   }
 
