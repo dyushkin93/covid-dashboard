@@ -1,5 +1,4 @@
-import 'materialize-css/dist/css/materialize.min.css';
-import M from 'materialize-css/dist/js/materialize.min';
+import 'bootswatch/dist/darkly/bootstrap.min.css';
 import 'normalize-css';
 import create from './helpers/create';
 import '../scss/style.scss';
