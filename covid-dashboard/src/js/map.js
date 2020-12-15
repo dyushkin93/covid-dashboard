@@ -11,8 +11,11 @@ export default class CovidMap {
 
     this.colors = {
       cases: "#FF0000",
+      newCases: "#FF0000",
       deaths: "#0000FF",
+      newDeaths: "#0000FF",
       recovered: "#00FF00",
+      newRecovered: "#00FF00",
     }
 
     this.map = new mapboxgl.Map({
@@ -42,28 +45,92 @@ export default class CovidMap {
       }
     }
 
+    this.layer = {
+      id: "circles",
+      type: "circle",
+      source: "points",
+      paint: {
+        "circle-color": this.colors[this.typeOfData],
+        "circle-opacity": .5,
+        "circle-radius": this.getCircleRadius,
+      }
+    }
+
     this.map.on("load", () => {
-      this.map.addLayer({
-        id: "circles",
-        type: "circle",
-        source: {
-          type: "geojson",
-          data: this.points,
-        },
-        paint: {
-          "circle-color": this.colors[this.typeOfData],
-          "circle-opacity": .5,
-          "circle-radius": {
-            property: this.typeOfData,
-            stops: [
-              [100, 3],
-              [1000000, 15],
-              [5000000, 45],
-              [20000000, 70]
-            ]
-          }
-        }
+      this.map.addSource("points", {
+        type: "geojson",
+        data: this.points,
+      })
+
+      this.map.addLayer(this.layer);
+      
+      this.map.on('click', async (e) => {
+        const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/
+        ${e.lngLat.lng},${e.lngLat.lat}.json?types=country&access_token=${mapboxgl.accessToken}`;
+        console.log(e)
+        const res = await fetch(url);
+        const data = await res.json(); 
+        console.log(data);
       })
     })
+  }
+
+  get getCircleRadius() {
+    const maxValue = Math.max(...this.points.features.map((point) => point.properties[this.typeOfData]));
+    const radius = {
+      property: this.typeOfData,
+      stops: [
+        [0, 3],
+        [maxValue * .333, 30],
+        [maxValue * 65, 65]
+      ],
+    }
+    return radius;
+  }
+
+  switchData({typeOfData, period, units}) {
+    if (typeOfData) {
+      this.typeOfData = typeOfData;
+    }
+
+    if (period) {
+      this.period = period;
+    }
+ 
+    if (units) {
+      this.units = units;
+    }
+
+    this.update();
+  }
+
+  update() {
+    if (this.period === "last") {
+      this.typeOfData = `new${this.typeOfData.charAt(0).toUpperCase() + this.typeOfData.slice(1)}`;
+    }
+
+    this.points.features.forEach((point) => {
+      if (this.units === "relative") {
+        const population = this.covidData[point.properties.countryCode].population / 100000;
+        point.properties.cases /= population;
+        point.properties.newCases /= population;
+        point.properties.deaths /= population;
+        point.properties.newDeath /= population;
+        point.properties.recovered /= population;
+        point.properties.newRecovered /= population;
+      } else if (this.units = "absolute") {
+        const country = this.covidData[point.properties.countryCode];
+        point.properties.cases = country.cases;
+        point.properties.newCases = country.newCases;
+        point.properties.deaths = country.deaths;
+        point.properties.newDeath = country.newDeath;
+        point.properties.recovered = country.recovered;
+        point.properties.newRecovered = country.newRecovered;
+      }
+    });
+  
+    this.map.getSource("points").setData(this.points);
+    this.map.setPaintProperty("circles", "circle-radius", this.getCircleRadius);
+    this.map.setPaintProperty("circles", "circle-color", this.colors[this.typeOfData]);
   }
 }

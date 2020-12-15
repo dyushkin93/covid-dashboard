@@ -23,6 +23,14 @@ export default class App {
     
     // initialisation of Map
     this.map = new CovidMap(this.covidData);
+    window.addEventListener("dblclick", e => {
+      this.map.switchData({
+        typeOfData: "deaths",
+        period: "last",
+        units: "relative",
+      })
+      console.log("switched");
+    })
     
 
   }
