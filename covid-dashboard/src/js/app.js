@@ -10,23 +10,23 @@ export default class App {
 
     // units to show in blocks "absolute" || "relative"
     this.units = 'absolute';
-    console.log(this.byCountryTimeline);
+    console.log(Object.values(covidData).slice(1));
 
     // units to show in byCountryCases block
 
     // initialisation of CasesByCountry block
-    this.casesByCountry = new CasesByCountry(byCountryData).updateBlock();
+    this.casesByCountry = new CasesByCountry(covidData).updateBlock();
 
     // initialisation of GlobalData block
     this.globalDataBlock = new GlobalDataBlock(this.covidData);
-    
+
     this.globalDataBlock.switchData({
-      country: "uz"
-    })
-    
+      country: 'uz',
+    });
+
     // initialisation of Chart block
     this.chart = new CovidChart(this.covidData);
-    
+
     /* sample to call this method
     this.chart.setNewData({
       covidData: this.byCountryTimeline[178],
