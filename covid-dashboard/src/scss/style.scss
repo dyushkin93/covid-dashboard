@@ -4,13 +4,13 @@ $bg-op: rgba(0,0,0,0.5);
   &__cases {
     display: flex;
     flex-direction: column;
-    max-height: 80vh;
+    height: 80vh;
     text-align: center;
 
     .cases-container {
       display: flex;
       flex-direction: column;
-      max-height: 85%;
+      height: 85%;
       overflow: hidden;
       background-color: $bg-op;
 
@@ -30,40 +30,40 @@ $bg-op: rgba(0,0,0,0.5);
           }
         }
       }
-    }
 
-    .by-country {
-      max-height: 90%;
-      overflow-y: scroll;
-
-      .country-cell {
-        position: relative;
-        display: flex;
-       
-        .confirmed {
-          flex: 0 1 33%;
-          text-align: right;
-          color: darkred;
-        }
-
-        .country {
-          flex: 1 1 33%;
-          text-align: left;
-          padding-left: 10px;
-          max-width: 50%;
-        }
-
-        .flag {
-          position: absolute;
-          right: 15px;
-          height: 1rem;
+      .by-country {
+        height: 90%;
+        overflow-y: scroll;
+  
+        .country-cell {
+          position: relative;
+          display: flex;
+         
+          .confirmed {
+            flex: 0 1 33%;
+            text-align: end;
+            color: darkred;
+          }
+  
+          .country {
+            flex: 1 1 33%;
+            text-align: start;
+            padding-left: 10px;
+            max-width: 50%;
+          }
+  
+          .flag {
+            position: absolute;
+            right: 15px;
+            height: 1rem;
+          }
         }
       }
-    }
-
-    .switcher {
-      cursor: default;
-      padding: 10px 0 5px 0;
+  
+      .switcher {
+        cursor: default;
+        padding: 10px 0 5px 0;
+      }
     }
 
     .last-update {
