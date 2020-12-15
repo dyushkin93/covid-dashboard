@@ -41,13 +41,13 @@ $bg-op: rgba(0,0,0,0.5);
          
           .confirmed {
             flex: 0 1 33%;
-            text-align: end;
+            text-align: right;
             color: darkred;
           }
   
           .country {
             flex: 1 1 33%;
-            text-align: start;
+            text-align: left;
             padding-left: 10px;
             max-width: 50%;
           }
