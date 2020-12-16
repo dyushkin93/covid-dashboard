@@ -8,6 +8,8 @@ export default class CovidMap {
     this.typeOfData = "cases";
     this.units = "absolute";
     this.period = "total";
+    this.tooltipTimeout;
+    this.tooltip = document.createElement("div");
 
     this.colors = {
       cases: "#FF0000",
@@ -63,16 +65,54 @@ export default class CovidMap {
       })
 
       this.map.addLayer(this.layer);
-      
-      this.map.on('click', async (e) => {
+      this.map.on("mousemove", this.showTooltip)
+    })
+
+    this.showTooltip = (e) => {
+      clearTimeout(this.tooltipTimeout);
+      const timeout = setTimeout(() => {
+        this.tooltip.remove();
+        this.tooltip.innerHTML = "";
+      }, 500);
+      this.tooltipTimeout = setTimeout(async () => {
         const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/
         ${e.lngLat.lng},${e.lngLat.lat}.json?types=country&access_token=${mapboxgl.accessToken}`;
-        console.log(e)
         const res = await fetch(url);
-        const data = await res.json(); 
-        console.log(data);
-      })
-    })
+        const data = await res.json();
+        console.log(e);
+
+        if (data.features.length > 0) {
+          this.tooltip.append(mapMarker.content.cloneNode(true));
+          this.tooltip.querySelector(".marker_country-name").innerHTML = data.features[0].text;
+          this.tooltip.querySelector(".marker").style.right = `${map.clientWidth - e.point.x}px`;
+          this.tooltip.querySelector(".marker").style.bottom = `${map.clientHeight - e.point.y + 16}px`;
+
+          let code = data.features[0].properties.short_code.toUpperCase();
+
+          if (this.covidData[code]) {
+            this.tooltip.querySelector(".marker_value").innerHTML = new Intl.NumberFormat('ru-RU').format(this.covidData[code][this.typeOfData]);
+
+            let typeOfDataToShow = this.typeOfData;
+            if (typeOfDataToShow.slice(0, 3) === "new") {
+              typeOfDataToShow = typeOfDataToShow.slice(3);
+            }
+            this.tooltip.querySelector(".marker_cases").innerHTML = typeOfDataToShow;
+
+            let unitsToShow = this.units;
+            if (unitsToShow === "absolute") {
+              unitsToShow = "people";
+            } else if (unitsToShow === "relative") {
+              unitsToShow = "per 100k people";
+            }
+            this.tooltip.querySelector(".marker_units").innerHTML = unitsToShow;
+          } else {
+            this.tooltip.querySelector(".marker_cases").innerHTML = "no data";
+          }
+
+          map.append(this.tooltip);
+        }
+      }, 600);
+    }
   }
 
   get getCircleRadius() {
