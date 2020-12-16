@@ -7,12 +7,21 @@ $bg-op: rgba(0,0,0,0.5);
     height: 80vh;
     text-align: center;
 
+    .size-btn {
+      position: absolute;
+      right: 8px;
+      top: -6px;
+      z-index: 10;
+      cursor: pointer;
+    }
+
     .cases-container {
       display: flex;
       flex-direction: column;
       height: 85%;
       overflow: hidden;
       background-color: $bg-op;
+      position: relative;
 
       .cases-search {
         margin: 0 auto;
@@ -33,11 +42,13 @@ $bg-op: rgba(0,0,0,0.5);
 
       .by-country {
         height: 90%;
+        width: 100%;
         overflow-y: scroll;
   
         .country-cell {
           position: relative;
           display: flex;
+          margin: 5px 0;
          
           .confirmed {
             flex: 0 1 33%;
@@ -50,6 +61,7 @@ $bg-op: rgba(0,0,0,0.5);
             text-align: left;
             padding-left: 10px;
             max-width: 50%;
+            cursor: pointer;
           }
   
           .flag {
@@ -81,6 +93,15 @@ $bg-op: rgba(0,0,0,0.5);
     flex-direction: column;
     text-align: center;
     height: 80vh;
+    position: relative;
+
+    .size-btn {
+      position: absolute;
+      right: 8px;
+      top: -6px;
+      z-index: 10;
+      cursor: pointer;
+    }
 
     .map-integrate {
       height: 85%;
@@ -123,6 +144,16 @@ $bg-op: rgba(0,0,0,0.5);
     flex-direction: column;
     text-align: center;
     height: 80vh;
+    position: relative;
+
+    .size-btn {
+      position: absolute;
+      left: 8px;
+      top: -6px;
+      z-index: 10;
+      cursor: pointer;
+      transform: rotateX(180deg);
+    }
 
     .deskboard {
       height: 45%;
@@ -162,9 +193,6 @@ $bg-op: rgba(0,0,0,0.5);
   }
 }
 
-.mapboxgl-canvas {
-  cursor: default;
-}
 
 ::-webkit-scrollbar {
   width: 12px;
