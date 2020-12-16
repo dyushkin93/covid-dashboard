@@ -85,9 +85,15 @@ export default async function getCovidData() {
   const countriesListRes = await fetch(countriesListUrl);
   const countriesList = await countriesListRes.json();
 
+  const lastUpdateUrl = `https://disease.sh/v3/covid-19/jhucsse`;
+  const lastUpdateRes = await fetch(lastUpdateUrl);
+  const lastUpdate = await lastUpdateRes.json();
+
   const covidData = {
     world: new Country('all', 'world', 7700000000, null),
   };
+
+  covidData.world.lastUpdate = new Date(lastUpdate[0].updatedAt);
 
   countriesList.forEach((country) => {
     if (!countriesExceptions.includes(country.countryInfo.iso2)
