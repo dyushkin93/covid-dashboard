@@ -11,7 +11,6 @@ export default class App {
 
     // units to show in blocks "absolute" || "relative"
     this.units = 'absolute';
-    console.log(Object.values(covidData).slice(1));
 
     // units to show in byCountryCases block
 

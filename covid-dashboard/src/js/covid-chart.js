@@ -9,59 +9,91 @@ export default class CovidChart {
     this.countryToShow = this.covidData.world;
     this.typeOfData = "cases";
     this.units = "absolute";
-    this.period = "last"
+    this.period = "total"
 
     this.timeline = [];
     this.dataToShow = [];
 
-    this.options = {
+    this.axesOptions = {
+      xAxes: [{
+        type: "time",
+        time: {
+          unit: "quarter",
+          round: "day",
+          displayFormats: {
+            quarter: "MMM"
+          }
+        }
+      }],
+      yAxes: [{
+        ticks: {
+            beginAtZero: true,
+            callback: function(value) {
+              let res = value;
+              if (value > 1000 && value < 1000000) {
+                res = value / 1000;
+                res = `${res}k`;
+              } else if (value >= 1000000) {
+                res = value / 1000000;
+                res = `${res}M`;
+              }
+              return res;
+          }
+        }
+      }]
+    };
+
+    this.lastOptions = {
       type: "bar",
       data: {
         labels: this.timeline,
         datasets: [{
             label: "",
             data: this.dataToShow,
-            barPercentage: 1,
+            barPercentage: 3,
             backgroundColor: "red",
             borderColor: "red"
         }]
       },
       options: {
         maintainAspectRatio: false,
-        scales: {
-          xAxes: [{
-            type: "time",
-            time: {
-              unit: "quarter",
-              round: "day",
-              displayFormats: {
-                quarter: "MMM"
-              }
-            }
-          }],
-          yAxes: [{
-            ticks: {
-                beginAtZero: true,
-                callback: function(value, index, values) {
-                  let res = value;
-                  if (value > 1000 && value < 1000000) {
-                    res = value / 1000;
-                    res = `${res}k`;
-                  } else if (value >= 1000000) {
-                    res = value / 1000000;
-                    res = `${res}M`;
-                  }
-                  return res;
-              }
-            }
-          }]
-        },
+        scales: this.axesOptions,
         legend: {
           display: false,
-        }
+        },
+        tooltips: {
+          displayColors: false
+        },
       }
     }
-    this.chart = new Chart(this.ctx, this.options);
+
+    this.totalOptions = {
+      type: "line",
+      data: {
+        labels: this.timeline,
+        datasets: [{
+            label: "",
+            data: this.dataToShow,
+            borderColor: "red",
+            pointRadius: 0,
+            pointHitRadius: 3,
+        }]
+      },
+      options: {
+        maintainAspectRatio: false,
+        scales: this.axesOptions,
+        legend: {
+          display: false,
+        },
+        tooltips: {
+          displayColors: false
+        },
+      }
+    }
+
+    this.optionsToRender = this.totalOptions;
+
+    this.chart = new Chart(this.ctx, this.optionsToRender);
     this.update();
   }
 
@@ -110,17 +142,22 @@ export default class CovidChart {
 
       if (this.units === "relative") {
         oneDayData /= (this.countryToShow.population / 100000);
+        oneDayData = oneDayData.toFixed(3);
       }
 
       this.dataToShow.push(oneDayData);
     });
 
-    console.log(this.dataToShow);
+    this.chart.destroy();
+    
+    if (this.period === "total") {
+      this.optionsToRender = this.totalOptions;
+    } else if (this.period === "last") {
+      this.optionsToRender = this.lastOptions;
+    }
+    this.optionsToRender.data.labels = this.timeline;
+    this.optionsToRender.data.datasets[0].data = this.dataToShow;
 
-    this.chart.data.labels = this.timeline;
-    this.chart.data.datasets.forEach((dataset) => {
-        dataset.data = this.dataToShow;
-    });
-    this.chart.update();
+    this.chart = new Chart(this.ctx, this.optionsToRender);
   }
 }

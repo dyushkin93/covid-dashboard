@@ -54,6 +54,9 @@ export default class GlobalDataBlock {
       this.casesToShow /= (this.countryToShow.population / 100000);
       this.deathsToShow /= (this.countryToShow.population / 100000);
       this.recoveredToShow /= (this.countryToShow.population / 100000);
+      this.casesToShow = this.casesToShow.toFixed(3);
+      this.deathsToShow = this.deathsToShow.toFixed(3);
+      this.recoveredToShow = this.recoveredToShow.toFixed(3);
     }
 
     this.casesElem.innerHTML = new Intl.NumberFormat('ru-RU').format(this.casesToShow);

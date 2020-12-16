@@ -80,9 +80,9 @@ export default class CovidMap {
     const radius = {
       property: this.typeOfData,
       stops: [
-        [0, 3],
-        [maxValue * .333, 30],
-        [maxValue * 65, 65]
+        [0, 4],
+        [maxValue * .2, 30],
+        [maxValue, 55]
       ],
     }
     return radius;
@@ -112,12 +112,13 @@ export default class CovidMap {
     this.points.features.forEach((point) => {
       if (this.units === "relative") {
         const population = this.covidData[point.properties.countryCode].population / 100000;
-        point.properties.cases /= population;
-        point.properties.newCases /= population;
-        point.properties.deaths /= population;
-        point.properties.newDeath /= population;
-        point.properties.recovered /= population;
-        point.properties.newRecovered /= population;
+        for (const key in point.properties) {
+          if (point.properties.hasOwnProperty(key)) {
+            const element = point.properties[key];
+            if (typeof element === "number");
+            element = (element / population).toFixed(3);
+          }
+        }
       } else if (this.units = "absolute") {
         const country = this.covidData[point.properties.countryCode];
         point.properties.cases = country.cases;
