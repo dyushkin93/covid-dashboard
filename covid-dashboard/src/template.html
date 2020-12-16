@@ -9,15 +9,18 @@
 </head>
 <body>
 
-  <div class="container-fluid">
-    <nav class="nav navbar-dark bg-primary mb-3">
-      <div class="container-fluid d-flex justify-content-center">
+  <nav class="nav navbar-dark bg-primary mb-3">
+    <div class="container-fluid d-flex justify-content-center">
       <h2 class="navbar-text">COVID-19 Dashboard</h2>
-      </div>
-    </nav>
+    </div>
+  </nav>
 
+  <div class="container-fluid">
     <div class="row">
-      <div id="cases" class="row__cases col-2">
+      <div id="cases-block" class="row__cases col-2">
+        <svg id="size-btn" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="size-btn bi bi-arrows-angle-expand hidden" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707zm4.344-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707z"/>
+        </svg>
         <div class="cases-container">
           <div class="cases-search"><input id="search-country" class="search-country" type="search" placeholder="Find your country..."></div>
           <span id="country-title" class="country-title">Cases</span>
@@ -31,6 +34,9 @@
         <div class="last-update">Last Update<br> <span id="last-update">2020/20/04 4:20</span></div>
       </div>
       <div class="row__map col-7">
+        <svg id="size-btn" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="size-btn bi bi-arrows-angle-expand hidden" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707zm4.344-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707z"/>
+        </svg>
         <div id="map" class="map-integrate">
         </div>
         <div id="map-switcher" class="switcher">
@@ -49,6 +55,9 @@
           </div>
         </div>
       <div id="global" class="row__global col-3">
+        <svg id="size-btn" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="size-btn bi bi-arrows-angle-expand hidden" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707zm4.344-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707z"/>
+        </svg>
         <div class="card deskboard bg-transparent">
           <ul class="list-group list-group-flush">
             <li class="list-group-item">
