@@ -31,7 +31,7 @@
             <button id="death" type="button" class="btn btn-primary btn-sm">Deaths</button>
           </div>            
         </div>
-        <div class="last-update">Last Update<br> <span id="last-update">2020/20/04 4:20</span></div>
+        <div class="last-update">Last Update<br> <span id="last-update"></span></div>
       </div>
       <div class="row__map col-7">
         <svg id="size-btn" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="size-btn bi bi-arrows-angle-expand hidden" viewBox="0 0 16 16">
@@ -101,6 +101,39 @@
 
     </div>
   </div>
-  
+  <template id="mapMarker">
+    <div class="marker">
+      <h5 class="marker_country-name"></h5>
+      <p><span class="marker_cases"></span>: <span class="marker_value"></span> <span class="marker_units"></span></p>
+    </div>
+    <style>
+      .marker * {
+        margin: 0;
+        padding: 0;
+      }
+
+      .marker {
+        position: absolute;
+        padding: .5em;
+        background-color: black;
+        color: white;
+      }
+
+      .marker:before {
+          content: "";
+          position: absolute;
+          width: 0;
+          height: 0;
+          right: 0;
+          bottom: -16px;
+          border: 8px solid;
+          border-color: #000 #000 transparent transparent ;
+      }
+
+      .marker_country-name {
+        font-size: 1em;
+      }
+    </style>
+  </template>
 </body>
 </html>

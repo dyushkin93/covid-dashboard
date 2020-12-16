@@ -12,9 +12,9 @@ export default class GlobalDataBlock {
 
     this.switcher = document.getElementById('deskboard-switcher');
 
-    this.casesToShow;
-    this.deathsToShow;
-    this.recoveredToShow;
+    this.casesToShow = 0;
+    this.deathsToShow = 0;
+    this.recoveredToShow = 0;
 
     this.setData();
   }
@@ -88,6 +88,9 @@ export default class GlobalDataBlock {
       this.casesToShow /= (this.countryToShow.population / 100000);
       this.deathsToShow /= (this.countryToShow.population / 100000);
       this.recoveredToShow /= (this.countryToShow.population / 100000);
+      this.casesToShow = this.casesToShow.toFixed(3);
+      this.deathsToShow = this.deathsToShow.toFixed(3);
+      this.recoveredToShow = this.recoveredToShow.toFixed(3);
     }
 
     this.casesElem.innerHTML = new Intl.NumberFormat('ru-RU').format(this.casesToShow);

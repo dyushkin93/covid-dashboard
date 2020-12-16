@@ -12,6 +12,8 @@ async function main() {
 
   // create app object
   const covidApp = new App(covidData);
+
+  document.querySelector('#last-update').innerHTML = covidData.world.lastUpdate.toLocaleString('en-US');
 }
 
 // app init

@@ -11,5 +11,7 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
+    'linebreak-style': 0,
+    'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
   },
 };
