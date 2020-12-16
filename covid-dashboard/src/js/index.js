@@ -8,8 +8,6 @@ import getCovidData from './getCovidData';
 async function main() {
   // get all data from API
   const covidData = await getCovidData();
-  console.log(covidData);
-
 
   // create app object
   const covidApp = new App(covidData);

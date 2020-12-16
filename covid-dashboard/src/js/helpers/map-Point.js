@@ -1,6 +1,6 @@
 export default class Point {
   constructor(country) {
-    this.type = "Feature";
+    this.type = 'Feature';
     this.properties = {
       countryCode: country.code,
       cases: country.cases,
@@ -9,11 +9,11 @@ export default class Point {
       newCases: country.newCases,
       newDeaths: country.newDeaths,
       newRecovered: country.newRecovered,
-    }
+    };
 
     this.geometry = {
-      type: "Point",
-      coordinates: country.coordinates
-    }
+      type: 'Point',
+      coordinates: country.coordinates,
+    };
   }
 }

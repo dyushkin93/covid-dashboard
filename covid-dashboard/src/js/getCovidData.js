@@ -1,9 +1,8 @@
-
 // there is no data for countries below
-const countriesExceptions = ["AX", "AS", "AI", "AQ", "AW", "BQ", "IO", "BM", "BV", "CC", "KY", "CK", "CW", "CX",
-"FO", "TF", "PF", "FK", "GP", "GF", "GI", "GL", "VA", "GG", "GU", "IM", "HK", "HM", "JE", "KP", "YT", "MM", "NC",
-"NU", "KI", "MO", "NF", "PW", "PR", "SJ", "MF", "VG", "TK", "TM", "VI", "MQ", "FM", "MS", "NR", "MP", "PN", "RE",
-"SH", "SX", "TV", "GS", "UM", "PS", "BL", "PM", "TO", "TC", "WF", "EH"];
+const countriesExceptions = ['AX', 'AS', 'AI', 'AQ', 'AW', 'BQ', 'IO', 'BM', 'BV', 'CC', 'KY', 'CK', 'CW', 'CX',
+  'FO', 'TF', 'PF', 'FK', 'GP', 'GF', 'GI', 'GL', 'VA', 'GG', 'GU', 'IM', 'HK', 'HM', 'JE', 'KP', 'YT', 'MM', 'NC',
+  'NU', 'KI', 'MO', 'NF', 'PW', 'PR', 'SJ', 'MF', 'VG', 'TK', 'TM', 'VI', 'MQ', 'FM', 'MS', 'NR', 'MP', 'PN', 'RE',
+  'SH', 'SX', 'TV', 'GS', 'UM', 'PS', 'BL', 'PM', 'TO', 'TC', 'WF', 'EH'];
 
 class Country {
   constructor(code, name, population, coordinates) {
@@ -12,7 +11,7 @@ class Country {
     this.population = population;
     this.coordinates = coordinates;
     if (this.code === null) {
-      console.log(this.name)
+      console.log(this.name);
     }
     this.timeline = [];
   }
@@ -22,25 +21,23 @@ class Country {
    * @param {Object} obj.cases
    * @param {Object} obj.deaths
    * @param {Object} obj.recovered
-   *  
+   *
    */
   async setTimeline() {
     const obj = await this.getTimelineFromAPI();
     if (obj) {
-      for (const key in obj.cases) {
-        if (obj.cases.hasOwnProperty(key)) {
-          const day = {
-            date: new Date(key),
-            cases: obj.cases[key],
-            deaths: obj.deaths[key],
-            recovered: obj.recovered[key]
-          }
-          this.timeline.push(day);
-        }
-      }
+      Object.keys(obj.cases).forEach((date) => {
+        const day = {
+          date: new Date(date),
+          cases: obj.cases[date],
+          deaths: obj.deaths[date],
+          recovered: obj.recovered[date],
+        };
+        this.timeline.push(day);
+      });
       this.timeline.reverse();
 
-      this.calculatePerDayData()
+      this.calculatePerDayData();
 
       this.cases = this.timeline[0].cases;
       this.deaths = this.timeline[0].deaths;
@@ -50,7 +47,6 @@ class Country {
       this.newRecovered = this.timeline[0].newRecovered;
     }
   }
-  
 
   async getTimelineFromAPI() {
     let countryTimeline;
@@ -58,7 +54,7 @@ class Country {
     const countryRes = await fetch(countryUrl);
     if (countryRes.status >= 200 && countryRes.status < 300) {
       countryTimeline = await countryRes.json();
-      if (this.code !== "all") {
+      if (this.code !== 'all') {
         countryTimeline = countryTimeline.timeline;
       }
     }
@@ -66,7 +62,8 @@ class Country {
   }
 
   calculatePerDayData() {
-    this.timeline.forEach((day, i, arr) => {
+    this.timeline.forEach((elem, i, arr) => {
+      const day = elem;
       if (i < this.timeline.length - 1) {
         day.newCases = day.cases - arr[i + 1].cases;
         day.newDeaths = day.deaths - arr[i + 1].deaths;
@@ -76,7 +73,7 @@ class Country {
         day.newDeaths = day.deaths;
         day.newRecovered = day.recovered;
       }
-    })
+    });
   }
 }
 
@@ -89,25 +86,24 @@ export default async function getCovidData() {
   const countriesList = await countriesListRes.json();
 
   const covidData = {
-    world: new Country("all", "world", 7700000000, null)
-  }
+    world: new Country('all', 'world', 7700000000, null),
+  };
 
-  await covidData.world.setTimeline();
-
-  for (let i = 0; i < countriesList.length; i++) {
-    const country = countriesList[i];
+  countriesList.forEach((country) => {
     if (!countriesExceptions.includes(country.countryInfo.iso2)
     && country.countryInfo.iso2 !== null) {
       covidData[country.countryInfo.iso2] = new Country(
         country.countryInfo.iso2,
         country.country,
         country.population,
-        [country.countryInfo.long, country.countryInfo.lat]
-      )
-  
-      await covidData[country.countryInfo.iso2].setTimeline();
+        [country.countryInfo.long, country.countryInfo.lat],
+      );
     }
-  }
+  });
 
-  return covidData
+  const promises = Object.values(covidData).map((country) => country.setTimeline());
+
+  await Promise.all(promises);
+
+  return covidData;
 }

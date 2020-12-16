@@ -1,7 +1,7 @@
 import CasesByCountry from './cases-by-contry';
-import GlobalDataBlock from "./global-data-block";
-import CovidChart from "./covid-chart";
-import CovidMap from "./map";
+import GlobalDataBlock from './global-data-block';
+import CovidChart from './covid-chart';
+import CovidMap from './map';
 
 export default class App {
   constructor(covidData) {
@@ -22,7 +22,7 @@ export default class App {
 
     // initialisation of Chart block
     this.chart = new CovidChart(this.covidData);
-    
+
     // initialisation of Map
     this.map = new CovidMap(this.covidData);
   }
