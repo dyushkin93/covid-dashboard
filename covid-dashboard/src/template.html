@@ -119,6 +119,10 @@
         color: white;
       }
 
+      .marker_cases {
+        text-transform: capitalize;
+      }
+
       .marker:before {
           content: "";
           position: absolute;
@@ -134,6 +138,133 @@
         font-size: 1em;
       }
     </style>
+  </template>
+  <template id="map-legend">
+    <div class="legend-wrapper">
+      <div class="legend-expand">
+      <svg class="legend-expand-icon" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+       viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+    <g>
+      <g>
+        <g>
+          <path d="M0,0v512h512V0H0z M480,480H32V128h288V96H32V32h448V480z"/>
+          <rect x="96" y="192" width="320" height="32"/>
+          <rect x="96" y="256" width="32" height="32"/>
+          <rect x="160" y="256" width="256" height="32"/>
+          <rect x="96" y="320" width="32" height="32"/>
+          <rect x="160" y="320" width="256" height="32"/>
+          <rect x="96" y="384" width="32" height="32"/>
+          <rect x="160" y="384" width="256" height="32"/>
+          <rect x="416" y="96" width="32" height="32"/>
+          <rect x="352" y="96" width="32" height="32"/>
+        </g>
+      </g>
+    </g>
+    <g>
+    </g>
+    <g>
+    </g>
+    <g>
+    </g>
+    <g>
+    </g>
+    <g>
+    </g>
+    <g>
+    </g>
+    <g>
+    </g>
+    <g>
+    </g>
+    <g>
+    </g>
+    <g>
+    </g>
+    <g>
+    </g>
+    <g>
+    </g>
+    <g>
+    </g>
+    <g>
+    </g>
+    <g>
+    </g>
+    </svg>
+    </div>
+    <div class="legend legend-hidden">
+      <h5 class="legend-type-of-data"></h5>
+      <ul class ="legend-list">
+        <li class="legend-list-item"><span class="legend-marker"></span>&#160;<span class="legend-value"></span>&#160;<span class="legend-units"></span>&#160;and more</li>
+        <li class="legend-list-item"><span class="legend-marker"></span>&#160;<span class="legend-value"></span>&#160;<span class="legend-units"></span>&#160;and more</li>
+        <li class="legend-list-item"><span class="legend-marker"></span>&#160;<span class="legend-value"></span>&#160;<span class="legend-units"></span>&#160;and more</li>
+        <li class="legend-list-item"><span class="legend-marker"></span>&#160;<span class="legend-value"></span>&#160;<span class="legend-units"></span>&#160;and more</li>
+        <li class="legend-list-item"><span class="legend-marker"></span>&#160;<span class="legend-value"></span>&#160;<span class="legend-units"></span>&#160;and more</li>
+      </ul>
+    </div>
+  </div>
+  <style>
+    .legend-expand {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      padding: 4px;
+      margin: .5em;
+      border-radius: 4px;
+      transition: background-color, .2s;
+      background-color: #ffffff;
+      cursor: pointer;
+    }
+
+    .legend-expand:hover {
+      background-color: #f2f2f2;
+    }
+
+    .legend {
+      position: absolute;
+      top: 35px;
+      left: 0;
+      margin: .5em;
+      color: white;
+      background-color: rgba(0, 0, 0, .8);
+      transition: position, ease-in-out .3s;
+    }
+
+    .legend-hidden {
+      left: -100%;
+    }
+
+    .legend-type-of-data {
+      font-size: 1em;
+      text-align: center;
+      padding: .5em 0;
+      margin: 0;
+      text-transform: capitalize;
+    }
+
+    .legend-list {
+      padding: .875em;
+    }
+
+    .legend-list-item {
+      display: flex;
+      margin-bottom: .875em;
+      align-items: center;
+      list-style-type: none;
+    }
+
+    .legend-marker {
+      display: inline-block;
+      margin-right: 1em;
+      background-color: red;
+      border-radius: 50%;
+    }
+  </style>
+  <script>
+    document.querySelector(".legend-expand").addEventListener("click", () => {
+      document.querySelector(".legend").classList.toggle("legend-hidden");
+    })
+  </script>
   </template>
 </body>
 </html>
