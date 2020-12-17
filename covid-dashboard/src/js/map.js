@@ -170,7 +170,7 @@ export default class CovidMap {
         marker.style.backgroundColor = this.colors[this.typeOfData];
 
         const valueElem = listElements[i].querySelector('.legend-value');
-        valueElem.innerHTML = value;
+        valueElem.innerHTML = new Intl.NumberFormat('ru-RU').format(value);
       }
     });
   }

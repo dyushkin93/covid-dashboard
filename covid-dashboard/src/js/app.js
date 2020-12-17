@@ -25,11 +25,6 @@ export default class App {
 
     // initialisation of Map
     this.map = new CovidMap(this.covidData);
-    this.chart.switchData({
-      typeOfData: 'deaths',
-      period: 'last',
-      units: 'relative',
-    });
 
     this.row = document.querySelector('.row');
     this.cases = document.getElementById('cases-block');
