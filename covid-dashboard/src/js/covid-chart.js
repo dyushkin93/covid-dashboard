@@ -1,5 +1,4 @@
 import Chart from 'chart.js';
-import swticher from './helpers/switcher';
 
 export default class CovidChart {
   constructor(covidData) {
@@ -137,16 +136,15 @@ export default class CovidChart {
 
   /**
    * @param {Object} param0
-   * @param {String} param0.country
+   * @param {String} param0.countryCode
    * @param {("cases"|"deaths"|"recovered")} param0.typeOfData
    * @param {"absolute"|"relative"} param0.units
    */
   switchData({
-    country, typeOfData, units, period,
+    countryCode, typeOfData, units, period,
   }) {
-    if (country) {
-      const countryCode = country.toUpperCase();
-      this.countryToShow = this.covidData[countryCode];
+    if (countryCode) {
+      this.countryToShow = this.covidData[countryCode.toUpperCase()];
     }
 
     if (typeOfData) {

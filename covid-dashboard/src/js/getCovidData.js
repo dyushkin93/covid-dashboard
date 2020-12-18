@@ -10,9 +10,6 @@ class Country {
     this.name = name;
     this.population = population;
     this.coordinates = coordinates;
-    if (this.code === null) {
-      console.log(this.name);
-    }
     this.timeline = [];
   }
 
@@ -62,6 +59,12 @@ class Country {
   }
 
   calculatePerDayData() {
+    // sometimes due to missing data API returns 0
+    // and daily increase becomes negative
+    function excludeNegatives(num) {
+      return num < 0 ? 0 : num;
+    }
+
     this.timeline.forEach((elem, i, arr) => {
       const day = elem;
       if (i < this.timeline.length - 1) {
@@ -73,6 +76,9 @@ class Country {
         day.newDeaths = day.deaths;
         day.newRecovered = day.recovered;
       }
+      let dailyIncrease = [day.newCases, day.newDeaths, day.newRecovered];
+      dailyIncrease = dailyIncrease.map((num) => excludeNegatives(num));
+      [day.newCases, day.newDeaths, day.newRecovered] = dailyIncrease;
     });
   }
 }
@@ -85,7 +91,7 @@ export default async function getCovidData() {
   const countriesListRes = await fetch(countriesListUrl);
   const countriesList = await countriesListRes.json();
 
-  const lastUpdateUrl = `https://disease.sh/v3/covid-19/jhucsse`;
+  const lastUpdateUrl = 'https://disease.sh/v3/covid-19/jhucsse';
   const lastUpdateRes = await fetch(lastUpdateUrl);
   const lastUpdate = await lastUpdateRes.json();
 

@@ -22,10 +22,9 @@ export default class GlobalDataBlock {
    * @param {"total"|"last"} param0.covidData
    * @param {"absolute"|"relative"} param0.units
    */
-  switchData({ country, period, units }) {
-    if (country) {
-      const countryCode = country.toUpperCase();
-      this.countryToShow = this.covidData[countryCode];
+  switchData({ countryCode, period, units }) {
+    if (countryCode) {
+      this.countryToShow = this.covidData[countryCode.toUpperCase()];
     }
 
     if (period) {

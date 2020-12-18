@@ -252,27 +252,45 @@ export default class CovidMap {
     this.update();
   }
 
+  focusOnCountry(countryCode) {
+    const { coordinates } = this.points.features
+      .find((point) => point.properties.countryCode === countryCode)
+      .geometry;
+    this.map.flyTo({
+      center: coordinates,
+      zoom: 5,
+      speed: 1.2,
+    });
+  }
+
   update() {
     if (this.period === 'last') {
-      this.typeOfData = `new${this.typeOfData.charAt(0).toUpperCase() + this.typeOfData.slice(1)}`;
+      if (this.typeOfData.slice(0, 3) !== 'new') {
+        this.typeOfData = `new${this.typeOfData.charAt(0).toUpperCase() + this.typeOfData.slice(1)}`;
+      }
+    } else if (this.period === 'total') {
+      if (this.typeOfData.slice(0, 3) === 'new') {
+        this.typeOfData = this.typeOfData.slice(3);
+        this.typeOfData = this.typeOfData.charAt(0).toLowerCase() + this.typeOfData.slice(1);
+      }
     }
 
     this.points.features.forEach((point) => {
       const countryPoint = point;
+      const country = this.covidData[point.properties.countryCode];
       if (this.units === 'relative') {
         const population = this.covidData[point.properties.countryCode].population / 100000;
         Object.keys(countryPoint.properties).forEach((key) => {
           if (typeof countryPoint.properties[key] === 'number') {
-            countryPoint.properties[key] = parseFloat((countryPoint.properties[key]
+            countryPoint.properties[key] = parseFloat((country[key]
                 / population).toFixed(3));
           }
         });
       } else if (this.units === 'absolute') {
-        const country = this.covidData[point.properties.countryCode];
         countryPoint.properties.cases = country.cases;
         countryPoint.properties.newCases = country.newCases;
         countryPoint.properties.deaths = country.deaths;
-        countryPoint.properties.newDeath = country.newDeath;
+        countryPoint.properties.newDeaths = country.newDeaths;
         countryPoint.properties.recovered = country.recovered;
         countryPoint.properties.newRecovered = country.newRecovered;
       }

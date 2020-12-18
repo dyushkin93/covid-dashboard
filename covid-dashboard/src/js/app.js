@@ -3,8 +3,6 @@ import GlobalDataBlock from './global-data-block';
 import CovidChart from './covid-chart';
 import CovidMap from './map';
 import expandBlock from './helpers/expand';
-import switcher from './helpers/switcher';
-import swticher from './helpers/switcher';
 
 export default class App {
   constructor(covidData) {
@@ -19,7 +17,7 @@ export default class App {
       globalData: new GlobalDataBlock(this.covidData),
       chart: new CovidChart(this.covidData),
       map: new CovidMap(this.covidData),
-      casesByCounty: new CasesByCountry(covidData),
+      casesByCounty: new CasesByCountry(covidData, this),
     };
 
     expandBlock();
