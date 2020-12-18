@@ -1,36 +1,22 @@
 import create from './helpers/create';
+import swticher from './helpers/switcher';
 
 export default class CasesByCountry {
   constructor(covidData) {
     this.byCountryData = Object.values(covidData).slice(1);
 
     this.countryBlock = document.getElementById('by-country');
-    this.cases = document.getElementById('cases');
-    this.death = document.getElementById('death');
-    this.recovered = document.getElementById('recovered');
     this.search = document.getElementById('search-country');
     this.title = document.getElementById('country-title');
 
-    this.switcher = document.getElementById('switcher');
-    this.mapSwitcher = document.getElementById('map-switcher');
-    this.deskBoardSwitcher = document.getElementById('deskboard-switcher');
-    this.unitsType = document.getElementById('units');
+    this.pag = document.getElementById('cases-paginator');
+    this.unitsToggle = document.getElementById('units');
 
     this.type = 'cases';
     this.units = 'absolute';
 
-    this.switcher.addEventListener('click', (e) => {
-      if (e.target.id === this.death.id) {
-        this.type = 'death';
-        this.title.textContent = 'Deaths';
-      } if (e.target.id === this.cases.id) {
-        this.type = 'cases';
-        this.title.textContent = 'Cases';
-      } if (e.target.id === this.recovered.id) {
-        this.type = 'recovered';
-        this.title.textContent = 'Recovered';
-      }
-    });
+    swticher(this.pag);
+    this.update();
   }
 
   matches() {
@@ -106,28 +92,23 @@ export default class CasesByCountry {
     return this.countryCell;
   }
 
-  updateBlock() {
+  update() {
+    this.activeType = this.pag.querySelector('span.active');
     this.createBlock(this.byCountryData, this.type, this.units);
-    this.switcher.addEventListener('click', () => {
-      if (this.type === 'death') {
-        this.createBlock(this.byCountryData, this.type, this.units);
-        if (this.search.value) {
-          this.createBlock(this.matches(), this.type, this.units);
+    this.pag.querySelectorAll('i').forEach((e) => {
+      e.addEventListener('click', () => {
+        this.activeType = this.pag.querySelector('span.active');
+        if (this.activeType.id === 'pag-cases') {
+          this.type = 'cases';
+          this.createBlock(this.byCountryData, this.type, this.units);
+        } if (this.activeType.id === 'pag-death') {
+          this.type = 'death';
+          this.createBlock(this.byCountryData, this.type, this.units);
+        } if (this.activeType.id === 'pag-recovered') {
+          this.type = 'recovered';
+          this.createBlock(this.byCountryData, this.type, this.units);
         }
-      } if (this.type === 'cases') {
-        this.createBlock(this.byCountryData, this.type, this.units);
-        if (this.search.value) {
-          this.createBlock(this.matches(), this.type, this.units);
-        }
-      } if (this.type === 'recovered') {
-        this.createBlock(this.byCountryData, this.type, this.units);
-        if (this.search.value) {
-          this.createBlock(this.matches(), this.type, this.units);
-        }
-      }
-    });
-    this.search.addEventListener('input', () => {
-      this.createBlock(this.matches(), this.type, this.units);
+      });
     });
   }
 }
