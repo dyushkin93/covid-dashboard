@@ -3,6 +3,8 @@ import GlobalDataBlock from './global-data-block';
 import CovidChart from './covid-chart';
 import CovidMap from './map';
 import expandBlock from './helpers/expand';
+import switcher from './helpers/switcher';
+import swticher from './helpers/switcher';
 
 export default class App {
   constructor(covidData) {
@@ -16,7 +18,7 @@ export default class App {
     // units to show in byCountryCases block
 
     // initialisation of CasesByCountry block
-    this.casesByCountry = new CasesByCountry(covidData).updateBlock();
+    this.casesByCountry = new CasesByCountry(covidData);
 
     // initialisation of GlobalData block
     this.globalDataBlock = new GlobalDataBlock(this.covidData);

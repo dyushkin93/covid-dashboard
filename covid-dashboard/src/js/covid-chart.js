@@ -1,4 +1,5 @@
 import Chart from 'chart.js';
+import swticher from './helpers/switcher';
 
 export default class CovidChart {
   constructor(covidData) {
@@ -128,6 +129,9 @@ export default class CovidChart {
     this.optionsToRender = this.totalOptions;
 
     this.chart = new Chart(this.ctx, this.optionsToRender);
+    this.pag = document.getElementById('chart-paginator');
+
+    swticher(this.pag);
     this.update();
   }
 
