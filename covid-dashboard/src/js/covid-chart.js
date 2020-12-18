@@ -14,6 +14,24 @@ export default class CovidChart {
     this.timeline = [];
     this.dataToShow = [];
 
+    this.fillColors = {
+      cases: 'rgb(255, 0, 0)',
+      newCases: 'rgb(255, 0, 0)',
+      deaths: 'rgb(0, 0, 255)',
+      newDeaths: 'rgb(0, 0, 255)',
+      recovered: 'rgb(0, 255, 0)',
+      newRecovered: 'rgb(0, 255, 0)',
+    };
+
+    this.backgroundColors = {
+      cases: 'rgba(255, 0, 0, .2)',
+      newCases: 'rgba(255, 0, 0, .2)',
+      deaths: 'rgba(0, 0, 255, .2)',
+      newDeaths: 'rgba(0, 0, 255, .2)',
+      recovered: 'rgba(0, 255, 0, .2)',
+      newRecovered: 'rgba(0, 255, 0, .2)',
+    };
+
     this.axesOptions = {
       xAxes: [{
         type: 'time',
@@ -51,8 +69,7 @@ export default class CovidChart {
           label: '',
           data: this.dataToShow,
           barPercentage: 3,
-          backgroundColor: 'red',
-          borderColor: 'red',
+          backgroundColor: this.fillColors[this.typeOfData],
         }],
       },
       options: {
@@ -176,6 +193,14 @@ export default class CovidChart {
     }
     this.optionsToRender.data.labels = this.timeline;
     this.optionsToRender.data.datasets[0].data = this.dataToShow;
+    if (this.period === 'last') {
+      this.optionsToRender.data.datasets[0].backgroundColor = this.fillColors[this.typeOfData];
+    } else {
+      this.optionsToRender.data.datasets[0]
+        .backgroundColor = this.backgroundColors[this.typeOfData];
+      this.optionsToRender.data.datasets[0]
+        .borderColor = this.fillColors[this.typeOfData];
+    }
 
     this.chart = new Chart(this.ctx, this.optionsToRender);
   }
