@@ -29,7 +29,14 @@
             <button id="cases" type="button" class="btn btn-primary btn-sm">Cases</button>
             <button id="recovered" type="button" class="btn btn-primary btn-sm">Recovered</button>
             <button id="death" type="button" class="btn btn-primary btn-sm">Deaths</button>
-          </div>            
+          </div>
+          <div id="paginator" class="paginator">
+            <i id="chevron-left" class="prev arrow bi bi-chevron-left"></i>
+              <span id="pag-cases" class="paginator-cases active">Cases</span>
+              <span id="pag-death" class="paginator-death hidden">Deaths</span>
+              <span id="pag-recovered" class="paginator-recovered hidden">Recovered</span>
+            <i id="chevron-right" class="next arrow bi bi-chevron-right"></i>
+          </div>
         </div>
         <div class="last-update">Last Update<br> <span id="last-update"></span></div>
       </div>
@@ -44,6 +51,13 @@
             <button id="cases" type="button" class="btn btn-primary btn-sm">Cases</button>
             <button id="recovered" type="button" class="btn btn-primary btn-sm">Recovered</button>
             <button id="death" type="button" class="btn btn-primary btn-sm">Deaths</button>
+          </div>
+          <div id="map-paginator" class="paginator">
+            <i id="chevron-left" class="prev arrow bi bi-chevron-left"></i>
+              <span id="pag-cases" class="paginator-cases active">Cases</span>
+              <span id="pag-death" class="paginator-death hidden">Deaths</span>
+              <span id="pag-recovered" class="paginator-recovered hidden">Recovered</span>
+            <i id="chevron-right" class="next arrow bi bi-chevron-right"></i>
           </div>
         </div>
         <div class="footer">
@@ -87,6 +101,13 @@
             <button id="total" type="button" class="btn btn-primary btn-sm">Total</button>
             <button id="units" type="button" class="btn btn-primary btn-sm">Cases per 100k</button>
           </div>
+          <div id="deskboard-paginator" class="paginator">
+            <i id="chevron-left" class="prev arrow bi bi-chevron-left"></i>
+              <span id="pag-cases" class="paginator-cases active">All Time</span>
+              <span id="pag-death" class="paginator-death hidden">Last day</span>
+              <span id="pag-recovered" class="paginator-recovered hidden">Total</span>
+            <i id="chevron-right" class="next arrow bi bi-chevron-right"></i>
+          </div>
         </div>
         <div class="graph">
           <svg id="size-btn" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="chart-expand size-btn bi bi-arrows-angle-expand hidden" viewBox="0 0 16 16">
@@ -99,6 +120,13 @@
             <button id="cases" type="button" class="btn btn-primary btn-sm">Cases</button>
             <button id="recovered" type="button" class="btn btn-primary btn-sm">Recovered</button>
             <button id="death" type="button" class="btn btn-primary btn-sm">Deaths</button>
+          </div>
+          <div id="chart-paginator" class="paginator">
+            <i id="chevron-left" class="prev arrow bi bi-chevron-left"></i>
+              <span id="pag-cases" class="paginator-cases active">Cases</span>
+              <span id="pag-death" class="paginator-death hidden">Deaths</span>
+              <span id="pag-recovered" class="paginator-recovered hidden">Recovered</span>
+            <i id="chevron-right" class="next arrow bi bi-chevron-right"></i>
           </div>
         </div>
       </div>

@@ -1,6 +1,36 @@
+@import '../../node_modules/bootstrap-icons/font/bootstrap-icons.css';
+
 $bg-op: rgba(0,0,0,0.5);
 
+html {
+  font-size: 14px;
+}
+
 .row {
+  .switcher {
+    display: none;
+  }
+
+  .paginator {
+    cursor: default;
+    padding: 5px 0;
+
+    .arrow {
+      cursor: pointer;
+
+      &:hover {
+        opacity: 0.5;
+        transition: 0.2s all;
+      }
+    }
+
+    span {
+      transition: 0.2s all;
+      padding: 0 5%;
+    }
+  }
+
+
   &__cases {
     display: flex;
     flex-direction: column;
@@ -58,7 +88,7 @@ $bg-op: rgba(0,0,0,0.5);
           justify-content: center;
          
           .confirmed {
-            width: 4vw;
+            width: 5vw;
             text-align: right;
             color: darkred;
           }
@@ -195,10 +225,6 @@ $bg-op: rgba(0,0,0,0.5);
         padding: 10px 0 5px 0;
       }
     }
-
-    .expand {
-      min-height: 100%;
-    }
     
     .graph {
       margin-top: 15px;
@@ -208,6 +234,10 @@ $bg-op: rgba(0,0,0,0.5);
       flex-direction: column;
       justify-content: space-between;
       position: relative;
+
+      &.expand {
+        min-height: 100%;
+      }
 
       .size-btn {
         position: absolute;
@@ -221,9 +251,9 @@ $bg-op: rgba(0,0,0,0.5);
       .chart-wrapper {
         margin: 10px 5px;
         height: 90%;
+        display: flex;
 
         #covid-chart {
-          max-height: 100%;
         }
       }
 
