@@ -119,6 +119,9 @@ export default class CovidMap {
             if (typeOfDataToShow.slice(0, 3) === 'new') {
               typeOfDataToShow = typeOfDataToShow.slice(3);
             }
+            if (this.period === 'last') {
+              typeOfDataToShow = `New ${typeOfDataToShow}`;
+            }
             this.tooltip.querySelector('.marker_cases').innerHTML = typeOfDataToShow;
 
             let unitsToShow = this.units;
@@ -161,17 +164,13 @@ export default class CovidMap {
 
     const listElements = Array.from(this.mapElement.querySelectorAll('.legend-list-item'));
     radius.stops.forEach(([value, size], i) => {
-      if (value === 0) {
-        listElements[i].remove();
-      } else {
-        const marker = listElements[i].querySelector('.legend-marker');
-        marker.style.width = `${size * 2}px`;
-        marker.style.height = `${size * 2}px`;
-        marker.style.backgroundColor = this.colors[this.typeOfData];
+      const marker = listElements[i].querySelector('.legend-marker');
+      marker.style.width = `${size * 2}px`;
+      marker.style.height = `${size * 2}px`;
+      marker.style.backgroundColor = this.colors[this.typeOfData];
 
-        const valueElem = listElements[i].querySelector('.legend-value');
-        valueElem.innerHTML = new Intl.NumberFormat('ru-RU').format(value);
-      }
+      const valueElem = listElements[i].querySelector('.legend-value');
+      valueElem.innerHTML = new Intl.NumberFormat('ru-RU').format(value);
     });
   }
 
@@ -202,15 +201,15 @@ export default class CovidMap {
         [1000, 10],
         [10000, 20],
         [50000, 30],
-        [100000, 55],
+        [100000, 40],
       ];
     } else if (maxValue >= 10000) {
       stops = [
-        [1, 5],
-        [100, 10],
-        [1000, 20],
-        [5000, 30],
-        [10000, 55],
+        [1, 3],
+        [100, 5],
+        [1000, 10],
+        [5000, 20],
+        [10000, 30],
       ];
     } else if (maxValue >= 5000) {
       stops = [
@@ -222,7 +221,7 @@ export default class CovidMap {
       ];
     } else {
       stops = [
-        [0, 0],
+        [0.01, 1],
         [0.1, 5],
         [1, 10],
         [100, 15],
@@ -254,36 +253,34 @@ export default class CovidMap {
   }
 
   update() {
-    this.map.on('load', () => {
-      if (this.period === 'last') {
-        this.typeOfData = `new${this.typeOfData.charAt(0).toUpperCase() + this.typeOfData.slice(1)}`;
-      }
+    if (this.period === 'last') {
+      this.typeOfData = `new${this.typeOfData.charAt(0).toUpperCase() + this.typeOfData.slice(1)}`;
+    }
 
-      this.points.features.forEach((point) => {
-        const countryPoint = point;
-        if (this.units === 'relative') {
-          const population = this.covidData[point.properties.countryCode].population / 100000;
-          Object.keys(countryPoint.properties).forEach((key) => {
-            if (typeof countryPoint.properties[key] === 'number') {
-              countryPoint.properties[key] = parseFloat((countryPoint.properties[key]
+    this.points.features.forEach((point) => {
+      const countryPoint = point;
+      if (this.units === 'relative') {
+        const population = this.covidData[point.properties.countryCode].population / 100000;
+        Object.keys(countryPoint.properties).forEach((key) => {
+          if (typeof countryPoint.properties[key] === 'number') {
+            countryPoint.properties[key] = parseFloat((countryPoint.properties[key]
                 / population).toFixed(3));
-            }
-          });
-        } else if (this.units === 'absolute') {
-          const country = this.covidData[point.properties.countryCode];
-          countryPoint.properties.cases = country.cases;
-          countryPoint.properties.newCases = country.newCases;
-          countryPoint.properties.deaths = country.deaths;
-          countryPoint.properties.newDeath = country.newDeath;
-          countryPoint.properties.recovered = country.recovered;
-          countryPoint.properties.newRecovered = country.newRecovered;
-        }
-      });
-
-      this.addLegend();
-      this.map.getSource('circles').setData(this.points);
-      this.map.setPaintProperty('circles', 'circle-radius', this.getCircleRadius);
-      this.map.setPaintProperty('circles', 'circle-color', this.colors[this.typeOfData]);
+          }
+        });
+      } else if (this.units === 'absolute') {
+        const country = this.covidData[point.properties.countryCode];
+        countryPoint.properties.cases = country.cases;
+        countryPoint.properties.newCases = country.newCases;
+        countryPoint.properties.deaths = country.deaths;
+        countryPoint.properties.newDeath = country.newDeath;
+        countryPoint.properties.recovered = country.recovered;
+        countryPoint.properties.newRecovered = country.newRecovered;
+      }
     });
+
+    this.addLegend();
+    this.map.getSource('circles').setData(this.points);
+    this.map.setPaintProperty('circles', 'circle-radius', this.getCircleRadius);
+    this.map.setPaintProperty('circles', 'circle-color', this.colors[this.typeOfData]);
   }
 }

@@ -131,7 +131,7 @@ export default class CovidChart {
     this.chart = new Chart(this.ctx, this.optionsToRender);
     this.pag = document.getElementById('chart-paginator');
 
-    swticher(this.pag);
+    // swticher(this.pag);
     this.update();
   }
 

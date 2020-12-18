@@ -7,13 +7,24 @@ html {
 }
 
 .row {
+  .map-switchers {
+    display: flex;
+    justify-content: space-evenly;
+
+    .paginator {
+      flex: 0 0 30%;
+    }
+  }
+
   .switcher {
     display: none;
   }
 
   .paginator {
+    display: flex;
+    padding: 5px 1em;
     cursor: default;
-    padding: 5px 0;
+    user-select: none;
 
     .arrow {
       cursor: pointer;
@@ -24,12 +35,26 @@ html {
       }
     }
 
-    span {
-      transition: 0.2s all;
+    .paginator-container {
+      position: relative;
+      flex-grow: 1;
+    }
+
+    .list-item {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      transition: opacity, 0.2s;
       padding: 0 5%;
+      margin: 0;
+      opacity: 0;
+    }
+
+    .active {
+      opacity: 1;
     }
   }
-
 
   &__cases {
     display: flex;
@@ -52,10 +77,13 @@ html {
       overflow: hidden;
       background-color: $bg-op;
 
+      .country-title {
+        margin-top: .2em;
+      }
+
       .cases-search {
         margin: 0 auto;
         width: 90%;
-        margin-top: 10px;
 
         .active {
           max-width: 10%;
@@ -80,6 +108,11 @@ html {
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
+
+        h2 {
+          margin: 0;
+          font-size: .5em;
+        }
   
         .country-cell {
           position: relative;

@@ -9,13 +9,13 @@ export default class CasesByCountry {
     this.search = document.getElementById('search-country');
     this.title = document.getElementById('country-title');
 
-    this.pag = document.getElementById('cases-paginator');
+    // this.pag = document.getElementById('cases-paginator');
     this.unitsToggle = document.getElementById('units');
 
     this.type = 'cases';
     this.units = 'absolute';
+    this.period = 'total';
 
-    swticher(this.pag);
     this.update();
   }
 
@@ -29,7 +29,7 @@ export default class CasesByCountry {
 
   createBlock(data, type, units) {
     if (units === 'absolute') {
-      if (type === 'death') {
+      if (type === 'deaths') {
         this.countryBlock.innerHTML = '';
         data.sort((a, b) => b.deaths - a.deaths)
           .forEach((el) => {
@@ -59,7 +59,7 @@ export default class CasesByCountry {
         });
       return this.countryCell;
     } if (units === 'relative') {
-      if (type === 'death') {
+      if (type === 'deaths') {
         this.countryBlock.innerHTML = '';
         data.sort((a, b) => b.deaths - a.deaths)
           .forEach((el) => {
@@ -92,23 +92,23 @@ export default class CasesByCountry {
     return this.countryCell;
   }
 
+  switchData({ typeOfData, period, units }) {
+    if (typeOfData) {
+      this.type = typeOfData;
+    }
+
+    if (period) {
+      this.period = period;
+    }
+
+    if (units) {
+      this.units = units;
+    }
+
+    this.update();
+  }
+
   update() {
-    this.activeType = this.pag.querySelector('span.active');
     this.createBlock(this.byCountryData, this.type, this.units);
-    this.pag.querySelectorAll('i').forEach((e) => {
-      e.addEventListener('click', () => {
-        this.activeType = this.pag.querySelector('span.active');
-        if (this.activeType.id === 'pag-cases') {
-          this.type = 'cases';
-          this.createBlock(this.byCountryData, this.type, this.units);
-        } if (this.activeType.id === 'pag-death') {
-          this.type = 'death';
-          this.createBlock(this.byCountryData, this.type, this.units);
-        } if (this.activeType.id === 'pag-recovered') {
-          this.type = 'recovered';
-          this.createBlock(this.byCountryData, this.type, this.units);
-        }
-      });
-    });
   }
 }

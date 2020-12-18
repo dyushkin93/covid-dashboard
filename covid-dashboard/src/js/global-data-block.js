@@ -8,46 +8,12 @@ export default class GlobalDataBlock {
     this.casesElem = document.querySelector('#cases-count');
     this.deathsElem = document.querySelector('#death-count');
     this.recoveredElem = document.querySelector('#recovered-count');
-    this.casesBlock = document.getElementById('by-country');
-
-    this.switcher = document.getElementById('deskboard-switcher');
 
     this.casesToShow = 0;
     this.deathsToShow = 0;
     this.recoveredToShow = 0;
 
-    this.setData();
-  }
-
-  setData() {
-    this.casesBlock.addEventListener('click', (e) => {
-      if (e.target.tagName === 'DIV' && e.target.classList.contains('country')) {
-        this.countryToShow = this.covidData[e.target.dataset.key];
-        console.log(this.countryToShow);
-      }
-      this.switchData(this.countryToShow, this.period, this.units);
-    });
-    this.switcher.addEventListener('click', (e) => {
-      if (e.target.id === 'all-time') {
-        this.countryToShow = this.covidData.world;
-        this.period = 'total';
-      }
-      if (e.target.id === 'total') {
-        this.period = 'total';
-      }
-      if (e.target.id === 'last-day') {
-        this.period = 'last';
-      }
-      if (e.target.id === 'units') {
-        this.units = 'relative';
-        e.target.classList.toggle('active');
-      }
-      if (!e.target.classList.contains('active')) {
-        this.units = 'absolute';
-      }
-      this.switchData(this.countryToShow, this.period, this.units);
-    });
-    this.switchData(this.countryToShow, this.period, this.units);
+    this.update();
   }
 
   /**

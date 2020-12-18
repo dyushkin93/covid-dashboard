@@ -15,20 +15,19 @@ export default class App {
     // units to show in blocks "absolute" || "relative"
     this.units = 'absolute';
 
-    // units to show in byCountryCases block
-
-    // initialisation of CasesByCountry block
-    this.casesByCountry = new CasesByCountry(covidData);
-
-    // initialisation of GlobalData block
-    this.globalDataBlock = new GlobalDataBlock(this.covidData);
-
-    // initialisation of Chart block
-    this.chart = new CovidChart(this.covidData);
-
-    // initialisation of Map
-    this.map = new CovidMap(this.covidData);
+    this.blocks = {
+      globalData: new GlobalDataBlock(this.covidData),
+      chart: new CovidChart(this.covidData),
+      map: new CovidMap(this.covidData),
+      casesByCounty: new CasesByCountry(covidData),
+    };
 
     expandBlock();
+  }
+
+  switchBlocksData(options) {
+    Object.values(this.blocks).forEach((block) => {
+      block.switchData(options);
+    });
   }
 }

@@ -11,7 +11,7 @@
 
   <nav class="nav navbar-dark bg-primary mb-3">
     <div class="container-fluid d-flex justify-content-center">
-      <h2 class="navbar-text">COVID-19 Dashboard</h2>
+      <h1 class="navbar-text">COVID-19 Dashboard</h1>
     </div>
   </nav>
 
@@ -22,19 +22,32 @@
           <svg id="size-btn" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="cases-expand size-btn bi bi-arrows-angle-expand hidden" viewBox="0 0 16 16">
             <path fill-rule="evenodd" d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707zm4.344-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707z"/>
           </svg>
+          <h4 id="country-title" class="country-title">By country</h4>
           <div class="cases-search"><input id="search-country" class="search-country" type="search" placeholder="Find your country..."></div>
-          <span id="country-title" class="country-title">Cases</span>
           <div id="by-country" class="by-country"></div>
-          <div id="switcher" class="switcher">
-            <button id="cases" type="button" class="btn btn-primary btn-sm">Cases</button>
-            <button id="recovered" type="button" class="btn btn-primary btn-sm">Recovered</button>
-            <button id="death" type="button" class="btn btn-primary btn-sm">Deaths</button>
-          </div>
-          <div id="cases-paginator" class="paginator">
+          <div class="paginator" data-param="typeOfData">
             <i id="chevron-left" class="prev arrow bi bi-chevron-left"></i>
-              <span id="pag-cases" class="paginator-cases active">Cases</span>
-              <span id="pag-death" class="paginator-death hidden">Deaths</span>
-              <span id="pag-recovered" class="paginator-recovered hidden">Recovered</span>
+            <div class="paginator-container">
+              <p class="list-item active" data-value="cases">Cases</p>
+              <p class="list-item" data-value="deaths">Deaths</p>
+              <p class="list-item" data-value="recovered">Recovered</p>
+            </div>
+            <i id="chevron-right" class="next arrow bi bi-chevron-right"></i>
+          </div>
+          <div class="paginator" data-param="period">
+            <i id="chevron-left" class="prev arrow bi bi-chevron-left"></i>
+            <div class="paginator-container">
+              <p class="list-item active" data-value="total">Total</p>
+              <p class="list-item" data-value="last">Last Day</p>
+            </div>
+            <i id="chevron-right" class="next arrow bi bi-chevron-right"></i>
+          </div>
+          <div class="paginator" data-param="units">
+            <i id="chevron-left" class="prev arrow bi bi-chevron-left"></i>
+            <div class="paginator-container">
+              <p class="list-item active" data-value="absolute">People</p>
+              <p class="list-item" data-value="relative">People per 100k</p>
+            </div>
             <i id="chevron-right" class="next arrow bi bi-chevron-right"></i>
           </div>
         </div>
@@ -47,17 +60,32 @@
           </svg>
           <div id="map" class="map-integrate">
           </div>
-          <div id="map-switcher" class="switcher">
-            <button id="cases" type="button" class="btn btn-primary btn-sm">Cases</button>
-            <button id="recovered" type="button" class="btn btn-primary btn-sm">Recovered</button>
-            <button id="death" type="button" class="btn btn-primary btn-sm">Deaths</button>
-          </div>
-          <div id="map-paginator" class="paginator">
-            <i id="chevron-left" class="prev arrow bi bi-chevron-left"></i>
-              <span id="pag-cases" class="paginator-cases active">Cases</span>
-              <span id="pag-death" class="paginator-death hidden">Deaths</span>
-              <span id="pag-recovered" class="paginator-recovered hidden">Recovered</span>
-            <i id="chevron-right" class="next arrow bi bi-chevron-right"></i>
+          <div class="map-switchers">
+            <div class="paginator" data-param="typeOfData">
+              <i id="chevron-left" class="prev arrow bi bi-chevron-left"></i>
+              <div class="paginator-container">
+                <p class="list-item active" data-value="cases">Cases</p>
+                <p class="list-item" data-value="deaths">Deaths</p>
+                <p class="list-item" data-value="recovered">Recovered</p>
+              </div>
+              <i id="chevron-right" class="next arrow bi bi-chevron-right"></i>
+            </div>
+            <div class="paginator" data-param="period">
+              <i id="chevron-left" class="prev arrow bi bi-chevron-left"></i>
+              <div class="paginator-container">
+                <p class="list-item active" data-value="total">Total</p>
+                <p class="list-item" data-value="last">Last Day</p>
+              </div>
+              <i id="chevron-right" class="next arrow bi bi-chevron-right"></i>
+            </div>
+            <div class="paginator" data-param="units">
+              <i id="chevron-left" class="prev arrow bi bi-chevron-left"></i>
+              <div class="paginator-container">
+                <p class="list-item active" data-value="absolute">People</p>
+                <p class="list-item" data-value="relative">People per 100k</p>
+              </div>
+              <i id="chevron-right" class="next arrow bi bi-chevron-right"></i>
+            </div>
           </div>
         </div>
         <div class="footer">
@@ -95,17 +123,20 @@
               </div>
             </li>
           </ul>
-          <div id="deskboard-switcher" class="switcher card-body">
-            <button id="all-time" type="button" class="btn btn-primary btn-sm">All time</button>
-            <button id="last-day" type="button" class="btn btn-primary btn-sm">Last day</button>
-            <button id="total" type="button" class="btn btn-primary btn-sm">Total</button>
-            <button id="units" type="button" class="btn btn-primary btn-sm">Cases per 100k</button>
-          </div>
-          <div id="deskboard-paginator" class="paginator">
+          <div class="paginator" data-param="period">
             <i id="chevron-left" class="prev arrow bi bi-chevron-left"></i>
-              <span id="all-time" class="paginator-cases active">All Time</span>
-              <span id="last-day" class="paginator-death hidden">Last day</span>
-              <span id="total" class="paginator-recovered hidden">Total</span>
+            <div class="paginator-container">
+              <p class="list-item active" data-value="total">Total</p>
+              <p class="list-item" data-value="last">Last Day</p>
+            </div>
+            <i id="chevron-right" class="next arrow bi bi-chevron-right"></i>
+          </div>
+          <div class="paginator" data-param="units">
+            <i id="chevron-left" class="prev arrow bi bi-chevron-left"></i>
+            <div class="paginator-container">
+              <p class="list-item active" data-value="absolute">People</p>
+              <p class="list-item" data-value="relative">People per 100k</p>
+            </div>
             <i id="chevron-right" class="next arrow bi bi-chevron-right"></i>
           </div>
         </div>
@@ -116,16 +147,29 @@
           <div class="chart-wrapper">
             <canvas id="covid-chart"></canvas>
           </div>
-          <div id="chart-switcher" class="switcher">
-            <button id="cases" type="button" class="btn btn-primary btn-sm">Cases</button>
-            <button id="recovered" type="button" class="btn btn-primary btn-sm">Recovered</button>
-            <button id="death" type="button" class="btn btn-primary btn-sm">Deaths</button>
-          </div>
-          <div id="chart-paginator" class="paginator">
+          <div class="paginator" data-param="typeOfData">
             <i id="chevron-left" class="prev arrow bi bi-chevron-left"></i>
-              <span id="pag-cases" class="paginator-cases active">Cases</span>
-              <span id="pag-death" class="paginator-death hidden">Deaths</span>
-              <span id="pag-recovered" class="paginator-recovered hidden">Recovered</span>
+            <div class="paginator-container">
+              <p class="list-item active" data-value="cases">Cases</p>
+              <p class="list-item" data-value="deaths">Deaths</p>
+              <p class="list-item" data-value="recovered">Recovered</p>
+            </div>
+            <i id="chevron-right" class="next arrow bi bi-chevron-right"></i>
+          </div>
+          <div class="paginator" data-param="period">
+            <i id="chevron-left" class="prev arrow bi bi-chevron-left"></i>
+            <div class="paginator-container">
+              <p class="list-item active" data-value="total">Total</p>
+              <p class="list-item" data-value="last">Last Day</p>
+            </div>
+            <i id="chevron-right" class="next arrow bi bi-chevron-right"></i>
+          </div>
+          <div class="paginator" data-param="units">
+            <i id="chevron-left" class="prev arrow bi bi-chevron-left"></i>
+            <div class="paginator-container">
+              <p class="list-item active" data-value="absolute">People</p>
+              <p class="list-item" data-value="relative">People per 100k</p>
+            </div>
             <i id="chevron-right" class="next arrow bi bi-chevron-right"></i>
           </div>
         </div>
@@ -279,7 +323,7 @@
       padding: .875em;
     }
 
-    .legend-list-item {
+    .legend-list-item{
       display: flex;
       margin-bottom: .875em;
       align-items: center;
