@@ -28,22 +28,5 @@ export default class App {
     this.map = new CovidMap(this.covidData);
 
     expandBlock();
-
-    this.row = document.querySelector('.row');
-    this.cases = document.getElementById('cases-block');
-    this.sizeBtn = document.getElementById('size-btn');
-    this.cases.addEventListener('mouseover', () => {
-      this.sizeBtn.classList.remove('hidden');
-    });
-    this.cases.addEventListener('mouseout', () => {
-      this.sizeBtn.classList.add('hidden');
-    });
-
-    this.list = Object.values(this.row.children);
-    this.list.forEach((e) => {
-      e.addEventListener('mouseover', () => e.children[0].classList.remove('hidden'));
-      e.addEventListener('mouseout', () => e.children[0].classList.add('hidden'));
-    });
-    console.log(this.list[0].children.filter);
   }
 }
