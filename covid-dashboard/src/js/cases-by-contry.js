@@ -30,15 +30,28 @@ export default class CasesByCountry {
     };
 
     this.update();
+
+    this.searchCountry = (event) => {
+      Array.from(this.countryBlock.children).forEach((elem) => {
+        elem.classList.remove('hidden-country-cell');
+      });
+      this.matches(event.target.value).forEach((elem) => {
+        elem.parentElement.classList.add('hidden-country-cell');
+      });
+    };
+    this.search.addEventListener('keyup', this.searchCountry);
   }
 
-  matches() {
-    const matches = this.byCountryData.filter((country) => {
-      const regex = new RegExp(`^${this.search.value}`, 'gi');
-      return country.name.match(regex);
+  matches(value) {
+    const matches = Array.from(this.countryBlock
+      .querySelectorAll('.country')).filter((elem) => {
+      const regex = new RegExp(`^${value}`, 'gi');
+      return !elem.innerText.match(regex);
     });
     return matches;
   }
+
+  
 
   // this function recreate countryCell on evety update
   // TODO: function should create constant countryCells during the app init
