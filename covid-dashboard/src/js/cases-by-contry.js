@@ -1,4 +1,5 @@
 import create from './helpers/create';
+import VirtualKeyboard from './keyboard/virtual-keyboard';
 
 export default class CasesByCountry {
   constructor(covidData, app) {
@@ -8,6 +9,8 @@ export default class CasesByCountry {
     this.countryBlock = document.getElementById('by-country');
     this.search = document.getElementById('search-country');
     this.title = document.getElementById('country-title');
+
+    this.keyboard = new VirtualKeyboard(this.search).init();
 
     this.unitsToggle = document.getElementById('units');
 
@@ -50,8 +53,6 @@ export default class CasesByCountry {
     });
     return matches;
   }
-
-  
 
   // this function recreate countryCell on evety update
   // TODO: function should create constant countryCells during the app init

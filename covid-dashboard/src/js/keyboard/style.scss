@@ -1,0 +1,82 @@
+.keyboard-wrapper {
+  height: 100vh;
+  overflow: hidden;
+  
+  .keyboard {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0 2.5px;
+    width: 100%;
+    max-width: 1220px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    background: #e6e6e6;
+    transition: position, .3s;
+    .keyboard-row {
+      display: flex;
+      justify-content: center;
+      height: 40px;
+      margin: 5px 0;
+      button {
+        flex-basis: 40px;
+        flex-grow: 1;
+        margin: 0 2.5px;
+        background: #fff;
+        border: none;
+        border-radius: 5px;
+        box-shadow: 0 0 2px #888;
+        font-size: 14px;
+        color: #505050;
+        &:hover,
+        &:focus {
+          background: #e5e5e5;
+          outline: none;
+        }
+      }
+      .pressed {
+        background: #e5e5e5;
+      }
+    }
+    .keyboard-row-1 {
+      button:last-child {
+        flex-grow: 2;
+        text-align: left;
+      }
+    }
+    .keyboard-row-2 {
+      button:first-child {
+        flex-grow: 1.5;
+        text-align: left;
+      }
+    }
+    .keyboard-row-3 {
+      button:first-child {
+        flex-grow: 1.5;
+        text-align: left;
+      }
+      button:last-child {
+        flex-grow: 1.5;
+        text-align: left;
+      }
+    }
+    .keyboard-row-4 {
+      button:first-child {
+        flex-grow: 2;
+        text-align: left;
+      }
+      button:last-child {
+        text-align: left;
+      }
+    }
+    .keyboard-row-5 {
+      button:first-child {
+        flex-grow: 20;
+      }
+    }
+  }
+  .hidden {
+    bottom: -230px;
+  }
+}

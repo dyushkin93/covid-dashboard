@@ -2,6 +2,10 @@
 
 $bg-op: rgba(0,0,0,0.5);
 
+body {
+  height: 100vh;
+  overflow: hidden;
+}
 
 .row {
   .map-switchers {
