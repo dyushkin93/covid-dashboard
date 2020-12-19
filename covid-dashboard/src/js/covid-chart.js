@@ -15,21 +15,21 @@ export default class CovidChart {
     this.dataToShow = [];
 
     this.fillColors = {
-      cases: 'rgb(255, 0, 0)',
-      newCases: 'rgb(255, 0, 0)',
-      deaths: 'rgb(0, 0, 255)',
-      newDeaths: 'rgb(0, 0, 255)',
-      recovered: 'rgb(0, 255, 0)',
-      newRecovered: 'rgb(0, 255, 0)',
+      cases: '#8b0000',
+      newCases: '#8b0000',
+      deaths: '#ffffff',
+      newDeaths: '#ffffff',
+      recovered: '#006400',
+      newRecovered: '#006400',
     };
 
     this.backgroundColors = {
-      cases: 'rgba(255, 0, 0, .2)',
-      newCases: 'rgba(255, 0, 0, .2)',
-      deaths: 'rgba(0, 0, 255, .2)',
-      newDeaths: 'rgba(0, 0, 255, .2)',
-      recovered: 'rgba(0, 255, 0, .2)',
-      newRecovered: 'rgba(0, 255, 0, .2)',
+      cases: 'rgba(139, 0, 0, .2)',
+      newCases: 'rgba(139, 0, 0, .2)',
+      deaths: 'rgba(255, 255, 255, .2)',
+      newDeaths: 'rgba(255, 255, 255, .2)',
+      recovered: 'rgba(0, 100, 0, .2)',
+      newRecovered: 'rgba(0, 100, 0, .2)',
     };
 
     this.axesOptions = {

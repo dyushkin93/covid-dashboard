@@ -2,9 +2,6 @@
 
 $bg-op: rgba(0,0,0,0.5);
 
-html {
-  font-size: 14px;
-}
 
 .row {
   .map-switchers {
@@ -210,7 +207,7 @@ html {
 
       .container {
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
       }
 
@@ -221,6 +218,15 @@ html {
 
       .footer-logo {
         width: 80px;
+      }
+
+      p {
+        margin: 0;
+      }
+
+      a,
+      p {
+        margin: 0 1em;
       }
     }
   }
@@ -253,8 +259,24 @@ html {
         height: 90%;
       }
 
-      p {
-        color: darkred;
+      .list-group-item {
+        p {
+          margin: 0;
+          font-size: 2em;
+          font-weight: bold;
+        }
+      }
+
+      #cases-count {
+        color: #8b0000;
+      }
+
+      #death-count {
+        color: white;
+      }
+
+      #recovered-count {
+        color: #006400;
       }
 
       li {
@@ -297,9 +319,6 @@ html {
         margin: 10px 5px;
         height: 90%;
         display: flex;
-
-        #covid-chart {
-        }
       }
 
       .switcher {

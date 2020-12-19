@@ -15,12 +15,12 @@ export default class CovidMap {
     this.mapElement = document.querySelector('#map');
     this.mapMarker = document.querySelector('#mapMarker');
     this.colors = {
-      cases: '#FF0000',
-      newCases: '#FF0000',
-      deaths: '#0000FF',
-      newDeaths: '#0000FF',
-      recovered: '#00FF00',
-      newRecovered: '#00FF00',
+      cases: '#8b0000',
+      newCases: '#8b0000',
+      deaths: '#ffffff',
+      newDeaths: '#ffffff',
+      recovered: '#006400',
+      newRecovered: '#006400',
     };
 
     this.map = new mapboxgl.Map({
