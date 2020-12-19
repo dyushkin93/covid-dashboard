@@ -6,7 +6,7 @@ const casesContainer = document.querySelector('.cases-container');
 const mapBlock = document.getElementById('map-block');
 const mapContainer = document.querySelector('.map-container');
 const mapExpand = document.querySelector('.map-expand');
-const mapSwitcher = document.getElementById('map-switcher');
+const mapSwitcher = document.querySelector('.map-expand');
 
 const globalBlock = document.getElementById('global');
 const deskboardContainer = document.querySelector('.deskboard');
@@ -36,6 +36,10 @@ const expandBlock = () => {
     mapBlock.classList.toggle('hidden');
     mapBlock.classList.toggle('col-7');
     mapBlock.classList.toggle('col');
+
+    // map is scaling only if window resize
+    const resize = new Event('resize');
+    window.dispatchEvent(resize);
   });
 
   deskboardExpand.addEventListener('click', () => {

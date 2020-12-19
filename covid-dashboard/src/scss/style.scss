@@ -17,6 +17,10 @@ body {
     }
   }
 
+  .hidden {
+    display: none !important;
+  }
+
   .switcher {
     display: none;
   }
@@ -333,6 +337,9 @@ body {
   }
 }
 
+.mapboxgl-canvas {
+  cursor: default;
+}
 
 ::-webkit-scrollbar {
   width: 12px;
