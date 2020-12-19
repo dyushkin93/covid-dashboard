@@ -114,8 +114,8 @@ export default class VirtualKeyboard {
         case '_speech':
           try {
             this.speech(key);
-          } catch {
-            alert('Speech recognition is supporten only by Chrome');
+          } catch (error) {
+            throw new Error('Speech recognition is not supported');
           }
           break;
         case '_sound':
@@ -214,7 +214,6 @@ export default class VirtualKeyboard {
     };
 
     recognizer.onresult = (event) => {
-      console.log(event.results);
       let res = Array.from(event.results);
       res = res.map((elem) => elem[0]);
       res = res.map((elem) => elem.transcript);
