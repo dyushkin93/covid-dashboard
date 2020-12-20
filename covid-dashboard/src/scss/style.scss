@@ -9,6 +9,10 @@ body {
 
 nav {
   height: 8vh;
+
+  h1 {
+    font-size: 5vh;
+  }
 }
 
 .row {
@@ -137,6 +141,7 @@ nav {
             width: 5vw;
             text-align: right;
             color: darkred;
+            font-size: 2vh;
           }
   
           .country {
@@ -145,6 +150,7 @@ nav {
             padding-left: 10px;
             max-width: 50%;
             cursor: pointer;
+            font-size: 2vh;
           }
   
           .flag {
@@ -174,6 +180,14 @@ nav {
       min-height: 15%;
       margin-top: 15px;
       background-color: $bg-op;
+
+      h4 {
+        font-size: 2.5vh;
+      }
+
+      h5 {
+        font-size: 2vh;
+      }
     }
   }
 
@@ -275,9 +289,13 @@ nav {
         padding-top: 10px;
         flex-shrink: 1;
         max-height: 30%;
+        font-size: 2vh;
+
+        h5 {
+          font-size: 2vh;
+        }
         p {
           margin: 0;
-          font-size: 1.5em;
           font-weight: bold;
         }
       }
@@ -297,7 +315,7 @@ nav {
     
     .graph {
       margin-top: 15px;
-      height: 55%;
+      height: fit-content;
       background-color: $bg-op;
       display: flex;
       flex-direction: column;
@@ -318,7 +336,7 @@ nav {
       .chart-wrapper {
         margin: 10px 5px;
         flex-shrink: 1;
-        height: 70%;
+        height: 30vh;
 
         &.expand {
           flex-grow: 1;
