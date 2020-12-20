@@ -6,7 +6,7 @@ export default class CovidChart {
     this.ctx = this.chartElem.getContext('2d');
     this.covidData = covidData;
 
-    this.countryToShow = this.covidData.world;
+    this.countryToShow = this.covidData.WORLD;
     this.typeOfData = 'cases';
     this.units = 'absolute';
     this.period = 'total';

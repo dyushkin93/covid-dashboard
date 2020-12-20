@@ -141,7 +141,7 @@ nav {
             width: 5vw;
             text-align: right;
             color: darkred;
-            font-size: 2vh;
+            font-size: 1em;
           }
   
           .country {
@@ -150,7 +150,7 @@ nav {
             padding-left: 10px;
             max-width: 50%;
             cursor: pointer;
-            font-size: 2vh;
+            font-size: 1em;
           }
   
           .flag {
@@ -292,11 +292,12 @@ nav {
         font-size: 2vh;
 
         h5 {
-          font-size: 2vh;
+          font-size: 1.2em;
         }
         p {
           margin: 0;
           font-weight: bold;
+          font-size: 2em;
         }
       }
 

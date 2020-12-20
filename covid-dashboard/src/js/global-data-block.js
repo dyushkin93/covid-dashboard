@@ -1,7 +1,7 @@
 export default class GlobalDataBlock {
   constructor(covidData) {
     this.covidData = covidData;
-    this.countryToShow = this.covidData.world;
+    this.countryToShow = this.covidData.WORLD;
     this.units = 'absolute';
     this.period = 'total';
     // elements where data should be exported

@@ -21,18 +21,16 @@ export default class CasesByCountry {
     this.switchCountry = (event) => {
       event.target.parentElement.classList.toggle('active-country-cell');
       this.currentCountry = event.target;
-      console.log(this.currentCountry);
       let countryCode = '';
       if (event.target.parentElement.classList.contains('active-country-cell') && !this.currentCountry.parentElement.classList.contains('current')) {
         countryCode = event.target.dataset.key;
       } else {
-        countryCode = 'world';
+        countryCode = 'WORLD';
       }
       app.switchBlocksData({
         countryCode,
       });
       this.app.blocks.map.focusOnCountry(countryCode);
-      this.currentCountry.parentElement.classList.remove('current');
       this.currentCountry.parentElement.classList.remove('current');
     };
 
@@ -116,7 +114,7 @@ export default class CasesByCountry {
           });
       } else if (type === 'recovered') {
         this.countryBlock.innerHTML = '';
-        data.sort((a, b) => (b.recovered / b.population) 
+        data.sort((a, b) => (b.recovered / b.population)
           * 100000 - (a.recovered / a.population) * 100000)
           .forEach((el) => {
             this.countryCases = create('div', 'confirmed', `${el.recovered !== 0 ? Math.round((el.recovered / el.population) * 100000, -2) : 0}`);
@@ -166,7 +164,7 @@ export default class CasesByCountry {
     if (this.currentCountry) {
       console.log(this.currentCountry.parentElement);
       console.log(this.currentCountry.dataset.key);
-      this.currentCountry.parentElement.classList.add('current')
+      this.currentCountry.parentElement.classList.add('current');
     }
     this.createBlock(this.byCountryData, this.type, this.units);
   }

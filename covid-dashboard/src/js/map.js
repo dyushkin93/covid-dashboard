@@ -252,13 +252,21 @@ export default class CovidMap {
     this.update();
   }
 
-  focusOnCountry(countryCode) {
-    const { coordinates } = this.points.features
-      .find((point) => point.properties.countryCode === countryCode)
-      .geometry;
+  focusOnCountry(country) {
+    let zoom;
+    let coordinates;
+    if (country === 'WORLD') {
+      zoom = 2;
+      coordinates = [30, 40];
+    } else {
+      zoom = 5;
+      coordinates = this.points.features
+        .find((point) => point.properties.countryCode === country)
+        .geometry.coordinates;
+    }
     this.map.flyTo({
       center: coordinates,
-      zoom: 5,
+      zoom,
       speed: 1.2,
     });
   }
