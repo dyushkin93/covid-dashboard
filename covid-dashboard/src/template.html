@@ -101,45 +101,39 @@
           </div>
         </div>
       <div id="global" class="row__global col-3">
-        <div class="card deskboard bg-transparent">
+        <div class="deskboard">
           <svg id="size-btn" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="global-expand size-btn bi bi-arrows-angle-expand hidden" viewBox="0 0 16 16">
             <path fill-rule="evenodd" d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707zm4.344-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707z"/>
           </svg>
-          <ul class="list-group list-group-flush border-bottom border-secondary">
-            <li class="list-group-item bg-transparent">
-              <div id="global-cases" class="global global-cases">
-                <h5>Global Cases</h2>
-                <p id="cases-count"></p>
-              </div>
-            </li>
-            <li class="list-group-item bg-transparent">
-              <div id="global-death" class="global global-death">
-                <h5>Global Deaths</h2>
-                <p id="death-count"></p>
-              </div>
-            </li>
-            <li class="list-group-item bg-transparent">
-              <div id="global-revovered" class="global global-recovered">
-                <h5>Global Recovered</h2>
-                <p id="recovered-count"></p>
-              </div>
-            </li>
-          </ul>
-          <div class="paginator" data-param="period">
-            <i id="chevron-left" class="prev arrow bi bi-chevron-left"></i>
-            <div class="paginator-container">
-              <p class="list-item active" data-value="total">Total</p>
-              <p class="list-item" data-value="last">Last Day</p>
-            </div>
-            <i id="chevron-right" class="next arrow bi bi-chevron-right"></i>
+          <div id="global-cases" class="global global-cases">
+            <h5>Global Cases</h2>
+            <p id="cases-count"></p>
           </div>
-          <div class="paginator" data-param="units">
-            <i id="chevron-left" class="prev arrow bi bi-chevron-left"></i>
-            <div class="paginator-container">
-              <p class="list-item active" data-value="absolute">People</p>
-              <p class="list-item" data-value="relative">People per 100k</p>
+          <div id="global-death" class="global global-death">
+            <h5>Global Deaths</h2>
+            <p id="death-count"></p>
+          </div>
+          <div id="global-revovered" class="global global-recovered">
+            <h5>Global Recovered</h2>
+            <p id="recovered-count"></p>
+          </div>
+          <div class="pag-block">
+            <div class="paginator" data-param="period">
+              <i id="chevron-left" class="prev arrow bi bi-chevron-left"></i>
+              <div class="paginator-container">
+                <p class="list-item active" data-value="total">Total</p>
+                <p class="list-item" data-value="last">Last Day</p>
+              </div>
+              <i id="chevron-right" class="next arrow bi bi-chevron-right"></i>
             </div>
-            <i id="chevron-right" class="next arrow bi bi-chevron-right"></i>
+            <div class="paginator" data-param="units">
+              <i id="chevron-left" class="prev arrow bi bi-chevron-left"></i>
+              <div class="paginator-container">
+                <p class="list-item active" data-value="absolute">People</p>
+                <p class="list-item" data-value="relative">People per 100k</p>
+              </div>
+              <i id="chevron-right" class="next arrow bi bi-chevron-right"></i>
+            </div>
           </div>
         </div>
         <div class="graph">
@@ -149,30 +143,32 @@
           <div class="chart-wrapper">
             <canvas id="covid-chart"></canvas>
           </div>
-          <div class="paginator" data-param="typeOfData">
-            <i id="chevron-left" class="prev arrow bi bi-chevron-left"></i>
-            <div class="paginator-container">
-              <p class="list-item active" data-value="cases">Cases</p>
-              <p class="list-item" data-value="deaths">Deaths</p>
-              <p class="list-item" data-value="recovered">Recovered</p>
+          <div class="pag-block">
+            <div class="paginator" data-param="typeOfData">
+              <i id="chevron-left" class="prev arrow bi bi-chevron-left"></i>
+              <div class="paginator-container">
+                <p class="list-item active" data-value="cases">Cases</p>
+                <p class="list-item" data-value="deaths">Deaths</p>
+                <p class="list-item" data-value="recovered">Recovered</p>
+              </div>
+              <i id="chevron-right" class="next arrow bi bi-chevron-right"></i>
             </div>
-            <i id="chevron-right" class="next arrow bi bi-chevron-right"></i>
-          </div>
-          <div class="paginator" data-param="period">
-            <i id="chevron-left" class="prev arrow bi bi-chevron-left"></i>
-            <div class="paginator-container">
-              <p class="list-item active" data-value="total">Total</p>
-              <p class="list-item" data-value="last">Last Day</p>
+            <div class="paginator" data-param="period">
+              <i id="chevron-left" class="prev arrow bi bi-chevron-left"></i>
+              <div class="paginator-container">
+                <p class="list-item active" data-value="total">Total</p>
+                <p class="list-item" data-value="last">Last Day</p>
+              </div>
+              <i id="chevron-right" class="next arrow bi bi-chevron-right"></i>
             </div>
-            <i id="chevron-right" class="next arrow bi bi-chevron-right"></i>
-          </div>
-          <div class="paginator" data-param="units">
-            <i id="chevron-left" class="prev arrow bi bi-chevron-left"></i>
-            <div class="paginator-container">
-              <p class="list-item active" data-value="absolute">People</p>
-              <p class="list-item" data-value="relative">People per 100k</p>
+            <div class="paginator" data-param="units">
+              <i id="chevron-left" class="prev arrow bi bi-chevron-left"></i>
+              <div class="paginator-container">
+                <p class="list-item active" data-value="absolute">People</p>
+                <p class="list-item" data-value="relative">People per 100k</p>
+              </div>
+              <i id="chevron-right" class="next arrow bi bi-chevron-right"></i>
             </div>
-            <i id="chevron-right" class="next arrow bi bi-chevron-right"></i>
           </div>
         </div>
       </div>

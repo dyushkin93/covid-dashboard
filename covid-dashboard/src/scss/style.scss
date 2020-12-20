@@ -7,6 +7,10 @@ body {
   overflow: hidden;
 }
 
+nav {
+  height: 8vh;
+}
+
 .row {
   .map-switchers {
     display: flex;
@@ -64,7 +68,7 @@ body {
   &__cases {
     display: flex;
     flex-direction: column;
-    height: 80vh;
+    height: 88vh;
     text-align: center;
 
     .size-btn {
@@ -177,7 +181,7 @@ body {
     display: flex;
     flex-direction: column;
     text-align: center;
-    height: 80vh;
+    height: 88vh;
     position: relative;
 
     .size-btn {
@@ -243,12 +247,12 @@ body {
     display: flex;
     flex-direction: column;
     text-align: center;
-    height: 80vh;
+    height: 88vh;
     position: relative;
 
     .size-btn {
       position: absolute;
-      left: -8px;
+      left: 8px;
       top: -6px;
       z-index: 10;
       cursor: pointer;
@@ -260,17 +264,20 @@ body {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      
-      ul {
-        background-color: $bg-op;
-        display: flex;
-        height: 90%;
+      background-color: $bg-op;
+
+      &.expand {
+        min-height: 100%;
+        
       }
 
-      .list-group-item {
+      .global {
+        padding-top: 10px;
+        flex-shrink: 1;
+        max-height: 30%;
         p {
           margin: 0;
-          font-size: 2em;
+          font-size: 1.5em;
           font-weight: bold;
         }
       }
@@ -286,19 +293,6 @@ body {
       #recovered-count {
         color: #006400;
       }
-
-      li {
-        height: 33%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .switcher {
-        cursor: default;
-        background-color: $bg-op;
-        padding: 10px 0 5px 0;
-      }
     }
     
     .graph {
@@ -309,10 +303,8 @@ body {
       flex-direction: column;
       justify-content: space-between;
       position: relative;
-
-      &.expand {
-        min-height: 100%;
-      }
+      flex-grow: 1;
+      
 
       .size-btn {
         position: absolute;
@@ -325,13 +317,12 @@ body {
 
       .chart-wrapper {
         margin: 10px 5px;
-        height: 90%;
-        display: flex;
-      }
+        flex-shrink: 1;
+        height: 70%;
 
-      .switcher {
-        background-color: transparent;
-        padding: 10px 0 5px 0;
+        &.expand {
+          flex-grow: 1;
+        }
       }
     }
   }
