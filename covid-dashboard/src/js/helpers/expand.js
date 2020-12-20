@@ -11,8 +11,10 @@ const mapSwitcher = document.querySelector('.map-expand');
 const globalBlock = document.getElementById('global');
 const deskboardContainer = document.querySelector('.deskboard');
 const deskboardExpand = document.querySelector('.global-expand');
+
 const chartContainer = document.querySelector('.graph');
 const chartExpand = document.querySelector('.chart-expand');
+const chartWrapper = document.querySelector('.chart-wrapper');
 
 const expandBlock = () => {
   casesExpand.addEventListener('click', () => {
@@ -46,11 +48,11 @@ const expandBlock = () => {
     Object.values(row.children).forEach((e) => e.classList.toggle('hidden'));
     Object.values(globalBlock.children).forEach((e) => e.classList.toggle('hidden'));
     deskboardContainer.classList.remove('hidden');
-    deskboardContainer.style.height = '100%';
     deskboardExpand.classList.remove('hidden');
     globalBlock.classList.toggle('hidden');
     globalBlock.classList.toggle('col-3');
     globalBlock.classList.toggle('col');
+    deskboardContainer.classList.toggle('expand');
   });
 
   chartExpand.addEventListener('click', () => {
@@ -62,6 +64,7 @@ const expandBlock = () => {
     globalBlock.classList.toggle('hidden');
     globalBlock.classList.toggle('col-3');
     globalBlock.classList.toggle('col');
+    chartWrapper.classList.toggle('expand');
   });
 
   document.querySelectorAll('#size-btn').forEach((e) => {

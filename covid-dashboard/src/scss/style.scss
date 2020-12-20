@@ -7,6 +7,14 @@ body {
   overflow: hidden;
 }
 
+nav {
+  height: 8vh;
+
+  h1 {
+    font-size: 5vh;
+  }
+}
+
 .row {
   .map-switchers {
     display: flex;
@@ -64,7 +72,7 @@ body {
   &__cases {
     display: flex;
     flex-direction: column;
-    height: 80vh;
+    height: 88vh;
     text-align: center;
 
     .size-btn {
@@ -133,6 +141,7 @@ body {
             width: 5vw;
             text-align: right;
             color: darkred;
+            font-size: 2vh;
           }
   
           .country {
@@ -141,6 +150,7 @@ body {
             padding-left: 10px;
             max-width: 50%;
             cursor: pointer;
+            font-size: 2vh;
           }
   
           .flag {
@@ -170,6 +180,14 @@ body {
       min-height: 15%;
       margin-top: 15px;
       background-color: $bg-op;
+
+      h4 {
+        font-size: 2.5vh;
+      }
+
+      h5 {
+        font-size: 2vh;
+      }
     }
   }
 
@@ -177,7 +195,7 @@ body {
     display: flex;
     flex-direction: column;
     text-align: center;
-    height: 80vh;
+    height: 88vh;
     position: relative;
 
     .size-btn {
@@ -243,12 +261,12 @@ body {
     display: flex;
     flex-direction: column;
     text-align: center;
-    height: 80vh;
+    height: 88vh;
     position: relative;
 
     .size-btn {
       position: absolute;
-      left: -8px;
+      left: 8px;
       top: -6px;
       z-index: 10;
       cursor: pointer;
@@ -260,17 +278,24 @@ body {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      
-      ul {
-        background-color: $bg-op;
-        display: flex;
-        height: 90%;
+      background-color: $bg-op;
+
+      &.expand {
+        min-height: 100%;
+        
       }
 
-      .list-group-item {
+      .global {
+        padding-top: 10px;
+        flex-shrink: 1;
+        max-height: 30%;
+        font-size: 2vh;
+
+        h5 {
+          font-size: 2vh;
+        }
         p {
           margin: 0;
-          font-size: 2em;
           font-weight: bold;
         }
       }
@@ -286,33 +311,18 @@ body {
       #recovered-count {
         color: #006400;
       }
-
-      li {
-        height: 33%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .switcher {
-        cursor: default;
-        background-color: $bg-op;
-        padding: 10px 0 5px 0;
-      }
     }
     
     .graph {
       margin-top: 15px;
-      height: 55%;
+      height: fit-content;
       background-color: $bg-op;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       position: relative;
-
-      &.expand {
-        min-height: 100%;
-      }
+      flex-grow: 1;
+      
 
       .size-btn {
         position: absolute;
@@ -325,13 +335,12 @@ body {
 
       .chart-wrapper {
         margin: 10px 5px;
-        height: 90%;
-        display: flex;
-      }
+        flex-shrink: 1;
+        height: 30vh;
 
-      .switcher {
-        background-color: transparent;
-        padding: 10px 0 5px 0;
+        &.expand {
+          flex-grow: 1;
+        }
       }
     }
   }
