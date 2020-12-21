@@ -31,7 +31,6 @@ export default class CasesByCountry {
         countryCode,
       });
       this.app.blocks.map.focusOnCountry(countryCode);
-      this.currentCountry.parentElement.classList.remove('current');
     };
 
     this.update();
@@ -139,6 +138,12 @@ export default class CasesByCountry {
       }
     }
 
+    if (this.currentCountry) {
+      this.countryBlock.querySelector('.current').addEventListener('click', () => {
+        this.countryBlock.querySelector('.current').classList.remove('current');
+      });
+    }
+
     this.countryBlock.querySelectorAll('.country').forEach((countryElem) => {
       countryElem.addEventListener('click', this.switchCountry);
     });
@@ -161,11 +166,6 @@ export default class CasesByCountry {
   }
 
   update() {
-    if (this.currentCountry) {
-      console.log(this.currentCountry.parentElement);
-      console.log(this.currentCountry.dataset.key);
-      this.currentCountry.parentElement.classList.add('current');
-    }
     this.createBlock(this.byCountryData, this.type, this.units);
   }
 }
