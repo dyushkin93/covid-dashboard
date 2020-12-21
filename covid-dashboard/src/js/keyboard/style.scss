@@ -3,6 +3,7 @@
   overflow: hidden;
   
   .keyboard {
+    z-index: 1000;
     position: fixed;
     bottom: 0;
     left: 50%;
