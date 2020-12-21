@@ -55,12 +55,6 @@ export default class CasesByCountry {
     return matches;
   }
 
-  // this function recreate countryCell on evety update
-  // TODO: function should create constant countryCells during the app init
-  // On every update data should be replaced via Element.innerHTML property
-  // That's because there should be ability to toggle each country and keep it active
-  // All event handlers are ready, you should just refactor code as described above
-  // to hide CountryCells during the searching you can use display:hidden
   createBlock(data, type, units) {
     if (units === 'absolute') {
       if (type === 'deaths') {

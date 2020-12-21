@@ -34,7 +34,6 @@ export default class App {
   }
 
   addHover() {
-    console.log(Object.values(this.row.children));
     Object.values(this.row.children).forEach((e) => {
       Object.values(e.children).forEach((el) => {
         el.addEventListener('mouseover', () => {

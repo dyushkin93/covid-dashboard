@@ -1,5 +1,3 @@
-/* eslint-disable no-undef */
-// voice recognition is undefined in VSCode
 import Key from './key';
 import './style.scss';
 
@@ -190,6 +188,7 @@ export default class VirtualKeyboard {
   }
 
   recognition() {
+    // eslint-disable-next-line no-undef
     const recognizer = new SpeechRecognition();
     recognizer.interimResults = true;
     recognizer.lang = this.inputLang === 'en' ? 'en-US' : 'ru-Ru';
@@ -201,7 +200,7 @@ export default class VirtualKeyboard {
   }
 
   speech(keyObj) {
-    // eslint-disable-next-line new-cap
+    // eslint-disable-next-line no-undef, new-cap
     const recognizer = new webkitSpeechRecognition();
     recognizer.interimResults = true;
     if (this.inputLang === 'ru') {
