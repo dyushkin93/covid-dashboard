@@ -16,6 +16,11 @@ nav {
 }
 
 .row {
+  .hover {
+    box-shadow: #375a7f 0px 0px 7px;
+    transition: 0.3s all;
+  }
+
   .map-switchers {
     display: flex;
     justify-content: space-evenly;
@@ -89,6 +94,8 @@ nav {
       height: 85%;
       overflow: hidden;
       background-color: $bg-op;
+      transition: 0.3s all;
+      
 
       .country-title {
         margin-top: .2em;
@@ -180,6 +187,7 @@ nav {
       min-height: 15%;
       margin-top: 15px;
       background-color: $bg-op;
+      transition: 0.3s all;
 
       h4 {
         font-size: 2.5vh;
@@ -211,6 +219,7 @@ nav {
       display: flex;
       flex-direction: column;
       background-color: $bg-op;
+      transition: 0.3s all;
     }
 
     .map-integrate {
@@ -230,6 +239,7 @@ nav {
       background-color: $bg-op;
       display: flex;
       justify-content: flex-end;
+      transition: 0.3s all;
 
       .container {
         display: flex;
@@ -279,6 +289,7 @@ nav {
       flex-direction: column;
       justify-content: space-between;
       background-color: $bg-op;
+      transition: 0.3s all;
 
       &.expand {
         min-height: 100%;
@@ -323,6 +334,7 @@ nav {
       justify-content: space-between;
       position: relative;
       flex-grow: 1;
+      transition: 0.3s all;
       
 
       .size-btn {

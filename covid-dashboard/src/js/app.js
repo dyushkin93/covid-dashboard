@@ -7,6 +7,7 @@ import expandBlock from './helpers/expand';
 export default class App {
   constructor(covidData) {
     this.covidData = covidData;
+    this.row = document.querySelector('.row');
     // period to show in blocks "total" || "lastDay"
     this.period = 'total';
 
@@ -21,11 +22,26 @@ export default class App {
     };
 
     expandBlock();
+    this.addHover();
   }
 
   switchBlocksData(options) {
     Object.values(this.blocks).forEach((block) => {
       block.switchData(options);
+    });
+  }
+
+  addHover() {
+    console.log(Object.values(this.row.children));
+    Object.values(this.row.children).forEach((e) => {
+      Object.values(e.children).forEach((el) => {
+        el.addEventListener('mouseover', () => {
+          el.classList.add('hover');
+        });
+        el.addEventListener('mouseout', () => {
+          el.classList.remove('hover');
+        });
+      });
     });
   }
 }
