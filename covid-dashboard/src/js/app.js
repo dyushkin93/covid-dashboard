@@ -3,6 +3,7 @@ import GlobalDataBlock from './global-data-block';
 import CovidChart from './covid-chart';
 import CovidMap from './map';
 import expandBlock from './helpers/expand';
+import overlay from './helpers/overlay';
 
 export default class App {
   constructor(covidData) {
@@ -21,6 +22,7 @@ export default class App {
       casesByCounty: new CasesByCountry(covidData, this),
     };
 
+    overlay();
     expandBlock();
     this.addHover();
   }

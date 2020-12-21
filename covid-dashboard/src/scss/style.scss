@@ -7,6 +7,65 @@ body {
   overflow: hidden;
 }
 
+.hidden {
+  display: none !important;
+}
+
+.overlay {
+  z-index: 10;
+  position: absolute;
+  background-color: rgba(0,0,0,0.9);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__close {
+    text-align: center;
+
+    img {
+      width: 12vw;
+    }
+  }
+
+  &__content {
+    text-align: center;
+    position: relative;
+    z-index: 15;
+    width: 40%;
+    height: 40%;
+    border-radius: 15px;
+    background: #375a7f;
+    box-shadow: white 0px 0px 8px;
+
+    .overlay-title {
+      margin-top: 30px;
+    }
+
+    .overlay-img {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 90px;
+      animation-name: rotation;
+      animation-duration: 4s;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+      cursor: pointer;
+    }
+
+    @keyframes rotation {
+      0% {
+          transform:rotate(0deg);
+      }
+      100% {
+          transform:rotate(360deg);
+      }
+  }
+  }
+}
+
 nav {
   height: 8vh;
 
