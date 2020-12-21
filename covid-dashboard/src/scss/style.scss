@@ -7,10 +7,6 @@ body {
   overflow: hidden;
 }
 
-.hidden {
-  display: none !important;
-}
-
 .overlay {
   z-index: 10;
   position: absolute;
@@ -63,6 +59,10 @@ body {
           transform:rotate(360deg);
       }
   }
+  }
+
+  .hidden {
+    display: none !important;
   }
 }
 
