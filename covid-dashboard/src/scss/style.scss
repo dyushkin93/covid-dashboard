@@ -497,15 +497,38 @@ nav {
   }
 }
 
+@media(max-height: 850px) {
+  .row {
+    &__global {
+      .deskboard {
+        .global {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}
+
 @media(max-width: 991px) {
   .navbar-text {
     font-size: 3rem;
   }
   .row {
     &__cases {
+      
       .cases-container {
+        .cases-search {
+          margin-bottom: 5px;
+
+          .search-country {
+            width: 30vw;
+          }
+        }
         .by-country {
           .country-cell {
+            .confirmed {
+              margin-right: 25px;
+            }
             .country {
               margin-right: 40px;
             }
