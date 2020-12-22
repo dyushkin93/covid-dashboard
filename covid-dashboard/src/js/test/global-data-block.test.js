@@ -1,14 +1,14 @@
-const GlobalDataBlock = require('../global-data-block.js');
-const covidData = require('./covid-data-sample.js');
+import GlobalDataBlock from '../global-data-block';
+import covidData from '../helpers/covid-data-sample';
 
 const globalDataBlock = new GlobalDataBlock(covidData);
 
 describe('GlobalDataBlock', () => {
-  it('Should return object', () => {
+  it('Return object', () => {
     expect(new GlobalDataBlock(covidData)).toBeInstanceOf(Object);
   });
 
-  it('Should display global data by default', () => {
+  it('Display global data by default', () => {
     expect(globalDataBlock.casesElem.innerHTML).toEqual(new Intl.NumberFormat('ru-RU').format(covidData.WORLD.cases));
     expect(globalDataBlock.deathsElem.innerHTML).toEqual(new Intl.NumberFormat('ru-RU').format(covidData.WORLD.deaths));
     expect(globalDataBlock.recoveredElem.innerHTML).toEqual(new Intl.NumberFormat('ru-RU').format(covidData.WORLD.recovered));
@@ -16,7 +16,7 @@ describe('GlobalDataBlock', () => {
 });
 
 describe('GlobalDataBlock.switchData()', () => {
-  it('Should switch data to another country if it ...', () => {
+  it('Switch data to another country if it passed', () => {
     globalDataBlock.switchData({ countryCode: 'UZ' });
     expect([
       globalDataBlock.casesElem.innerHTML,
@@ -40,7 +40,7 @@ describe('GlobalDataBlock.switchData()', () => {
     ]);
   });
 
-  it('Should switch data to last day if it ...', () => {
+  it('Switch data to last day if it passed', () => {
     globalDataBlock.switchData({ period: 'last' });
     expect([
       globalDataBlock.casesElem.innerHTML,
@@ -53,7 +53,7 @@ describe('GlobalDataBlock.switchData()', () => {
     ]);
   });
 
-  it('Should switch data units to people per 100k if it ...', () => {
+  it('Switch data units to people per 100k if it passed', () => {
     globalDataBlock.switchData({ units: 'relative' });
     expect([
       globalDataBlock.casesElem.innerHTML,

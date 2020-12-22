@@ -63,5 +63,3 @@ export default class GlobalDataBlock {
     this.recoveredElem.innerHTML = new Intl.NumberFormat('ru-RU').format(this.recoveredToShow);
   }
 }
-
-module.exports = GlobalDataBlock;

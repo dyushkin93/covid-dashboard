@@ -33,6 +33,39 @@ const covidData = {
     ],
   },
 
+  RU: {
+    cases: 2850042,
+    code: 'RU',
+    coordinates: [100, 60],
+    deaths: 50723,
+    name: 'Russia',
+    newCases: 28917,
+    newDeaths: 481,
+    newRecovered: 19684,
+    population: 145964267,
+    recovered: 2273510,
+    timeline: [
+      {
+        cases: 2850042,
+        date: new Date(),
+        deaths: 50723,
+        newCases: 28917,
+        newDeaths: 481,
+        newRecovered: 19684,
+        recovered: 2273510,
+      },
+      {
+        cases: 2821125,
+        date: new Date(),
+        deaths: 50242,
+        newCases: 28510,
+        newDeaths: 498,
+        newRecovered: 20766,
+        recovered: 2253826,
+      },
+    ],
+  },
+
   UZ: {
     cases: 75933,
     code: 'UZ',
@@ -65,6 +98,7 @@ const covidData = {
       },
     ],
   },
+
 };
 
-module.exports = covidData;
+export default covidData;
