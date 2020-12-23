@@ -3,8 +3,66 @@
 $bg-op: rgba(0,0,0,0.5);
 
 body {
+  height: fit-content;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.overlay {
+  z-index: 10;
+  position: absolute;
+  background-color: rgba(0,0,0,0.9);
+  width: 100vw;
   height: 100vh;
-  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__close {
+    text-align: center;
+
+    img {
+      width: 12vw;
+    }
+  }
+
+  &__content {
+    text-align: center;
+    position: relative;
+    z-index: 15;
+    width: 40%;
+    height: 40%;
+    border-radius: 15px;
+    background: #375a7f;
+    box-shadow: white 0px 0px 8px;
+
+    .overlay-title {
+      margin-top: 30px;
+    }
+
+    .overlay-img {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 90px;
+      animation-name: rotation;
+      animation-duration: 4s;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+      cursor: pointer;
+    }
+
+    @keyframes rotation {
+      0% {
+          transform:rotate(0deg);
+      }
+      100% {
+          transform:rotate(360deg);
+      }
+  }
+  }
 }
 
 nav {
@@ -16,6 +74,11 @@ nav {
 }
 
 .row {
+  .hover {
+    box-shadow: #375a7f 0px 0px 7px;
+    transition: 0.3s all;
+  }
+
   .map-switchers {
     display: flex;
     justify-content: space-evenly;
@@ -89,6 +152,8 @@ nav {
       height: 85%;
       overflow: hidden;
       background-color: $bg-op;
+      transition: 0.3s all;
+      
 
       .country-title {
         margin-top: .2em;
@@ -141,7 +206,7 @@ nav {
             width: 5vw;
             text-align: right;
             color: darkred;
-            font-size: 2vh;
+            font-size: 1em;
           }
   
           .country {
@@ -150,7 +215,7 @@ nav {
             padding-left: 10px;
             max-width: 50%;
             cursor: pointer;
-            font-size: 2vh;
+            font-size: 1em;
           }
   
           .flag {
@@ -180,6 +245,7 @@ nav {
       min-height: 15%;
       margin-top: 15px;
       background-color: $bg-op;
+      transition: 0.3s all;
 
       h4 {
         font-size: 2.5vh;
@@ -211,6 +277,7 @@ nav {
       display: flex;
       flex-direction: column;
       background-color: $bg-op;
+      transition: 0.3s all;
     }
 
     .map-integrate {
@@ -230,6 +297,7 @@ nav {
       background-color: $bg-op;
       display: flex;
       justify-content: flex-end;
+      transition: 0.3s all;
 
       .container {
         display: flex;
@@ -279,6 +347,7 @@ nav {
       flex-direction: column;
       justify-content: space-between;
       background-color: $bg-op;
+      transition: 0.3s all;
 
       &.expand {
         min-height: 100%;
@@ -292,11 +361,12 @@ nav {
         font-size: 2vh;
 
         h5 {
-          font-size: 2vh;
+          font-size: 1.2em;
         }
         p {
           margin: 0;
           font-weight: bold;
+          font-size: 2em;
         }
       }
 
@@ -322,6 +392,7 @@ nav {
       justify-content: space-between;
       position: relative;
       flex-grow: 1;
+      transition: 0.3s all;
       
 
       .size-btn {
@@ -346,8 +417,148 @@ nav {
   }
 }
 
+
+.footer {
+  min-height: 15%;
+  margin-top: 15px;
+  background-color: $bg-op;
+  display: flex;
+  justify-content: flex-end;
+  display: none;
+
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .footer__contacts {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .footer-logo {
+    width: 80px;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  a,
+  p {
+    margin: 0 1em;
+  }
+}
+
 .mapboxgl-canvas {
   cursor: default;
+}
+
+@media(max-width: 1200px) {
+  html {
+    font-size: 12px;
+  }
+  .row {
+    &__cases {
+      padding: 0 5px;
+
+      .last-update {
+        margin-top: 5px;
+      }
+    }
+
+    &__map {
+      padding: 0 5px;
+
+      .footer {
+        margin-top: 5px;
+      }
+    }
+
+    &__global {
+      padding: 0 5px;
+
+      .deskboard {
+    
+        .global {
+          font-size: 1rem;
+        }
+      }
+
+      .graph {
+        margin-top: 5px;
+
+        .chart-wrapper {
+          height: 36vh;
+        }
+      }
+    }
+  }
+}
+
+@media(max-height: 850px) {
+  .row {
+    &__global {
+      .deskboard {
+        .global {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}
+
+@media(max-width: 991px) {
+  .navbar-text {
+    font-size: 3rem;
+  }
+  .row {
+    &__cases {
+      
+      .cases-container {
+        .cases-search {
+          margin-bottom: 5px;
+
+          .search-country {
+            width: 30vw;
+          }
+        }
+        .by-country {
+          .country-cell {
+            .confirmed {
+              margin-right: 25px;
+            }
+            .country {
+              margin-right: 40px;
+            }
+          }
+        }
+      }
+    }
+    &__map {
+      height: 60vh;
+      .map-container {
+        height: 100%;
+        margin-bottom: 5px;
+      }
+      .footer {
+        display: none;
+      }
+    }
+  }
+
+  .footer {
+    display: flex;
+    align-items: center;
+    margin: 5px 5px 0 5px;
+    height: 11vh;
+
+    .container {
+      display: flex;
+      align-items: center;
+    }
+  }
 }
 
 ::-webkit-scrollbar {

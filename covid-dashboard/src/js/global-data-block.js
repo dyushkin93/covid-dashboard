@@ -1,13 +1,13 @@
 export default class GlobalDataBlock {
   constructor(covidData) {
     this.covidData = covidData;
-    this.countryToShow = this.covidData.world;
+    this.countryToShow = this.covidData.WORLD;
     this.units = 'absolute';
     this.period = 'total';
     // elements where data should be exported
-    this.casesElem = document.querySelector('#cases-count');
-    this.deathsElem = document.querySelector('#death-count');
-    this.recoveredElem = document.querySelector('#recovered-count');
+    this.casesElem = document.querySelector('#cases-count') || document.createElement('div');
+    this.deathsElem = document.querySelector('#death-count') || document.createElement('div');
+    this.recoveredElem = document.querySelector('#recovered-count') || document.createElement('div');
 
     this.casesToShow = 0;
     this.deathsToShow = 0;
@@ -18,7 +18,7 @@ export default class GlobalDataBlock {
 
   /**
    *
-   * @param {String} param0.country
+   * @param {String} param0.countryCode
    * @param {"total"|"last"} param0.covidData
    * @param {"absolute"|"relative"} param0.units
    */

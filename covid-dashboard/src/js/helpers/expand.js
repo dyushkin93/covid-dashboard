@@ -1,4 +1,5 @@
 const row = document.querySelector('.row');
+
 const casesBlock = document.getElementById('cases-block');
 const casesExpand = document.querySelector('.cases-expand');
 const casesContainer = document.querySelector('.cases-container');
@@ -24,7 +25,12 @@ const expandBlock = () => {
     casesContainer.style.height = '100%';
     casesExpand.classList.remove('hidden');
     casesBlock.classList.toggle('hidden');
-    casesBlock.classList.toggle('col-2');
+    casesBlock.classList.toggle('col-xl-2');
+    casesBlock.classList.toggle('col-lg-3');
+    casesBlock.classList.toggle('col-sm-6');
+    casesBlock.classList.toggle('order-xl-first');
+    casesBlock.classList.toggle('col-6');
+    casesBlock.classList.toggle('order-lg-first');
     casesBlock.classList.toggle('col');
   });
 
@@ -36,7 +42,12 @@ const expandBlock = () => {
     mapContainer.style.height = '100%';
     mapExpand.classList.remove('hidden');
     mapBlock.classList.toggle('hidden');
-    mapBlock.classList.toggle('col-7');
+    mapBlock.classList.toggle('col-xl-7');
+    mapBlock.classList.toggle('col-lg-6');
+    mapBlock.classList.toggle('col-sm-12');
+    mapBlock.classList.toggle('col-12');
+    mapBlock.classList.toggle('order-sm-first');
+    mapBlock.classList.toggle('order-first');
     mapBlock.classList.toggle('col');
 
     // map is scaling only if window resize
@@ -50,7 +61,10 @@ const expandBlock = () => {
     deskboardContainer.classList.remove('hidden');
     deskboardExpand.classList.remove('hidden');
     globalBlock.classList.toggle('hidden');
-    globalBlock.classList.toggle('col-3');
+    globalBlock.classList.toggle('col-xl-3');
+    globalBlock.classList.toggle('col-lg-3');
+    globalBlock.classList.toggle('col-sm-6');
+    globalBlock.classList.toggle('col-6');
     globalBlock.classList.toggle('col');
     deskboardContainer.classList.toggle('expand');
   });
@@ -62,7 +76,10 @@ const expandBlock = () => {
     chartContainer.classList.toggle('expand');
     chartExpand.classList.remove('hidden');
     globalBlock.classList.toggle('hidden');
-    globalBlock.classList.toggle('col-3');
+    globalBlock.classList.toggle('col-xl-3');
+    globalBlock.classList.toggle('col-lg-3');
+    globalBlock.classList.toggle('col-sm-6');
+    globalBlock.classList.toggle('col-6');
     globalBlock.classList.toggle('col');
     chartWrapper.classList.toggle('expand');
   });

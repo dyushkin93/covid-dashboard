@@ -1,5 +1,3 @@
-/* eslint-disable no-undef */
-// voice recognition is undefined in VSCode
 import Key from './key';
 import './style.scss';
 
@@ -108,7 +106,7 @@ export default class VirtualKeyboard {
           key.keyElement.style.textTransform = 'uppercase';
           break;
         case '_hide':
-          document.querySelector('.keyboard').classList.add('hidden');
+          document.querySelector('.keyboard').classList.add('keyboard-hidden');
           this.inputArea.blur();
           break;
         case '_speech':
@@ -190,6 +188,7 @@ export default class VirtualKeyboard {
   }
 
   recognition() {
+    // eslint-disable-next-line no-undef
     const recognizer = new SpeechRecognition();
     recognizer.interimResults = true;
     recognizer.lang = this.inputLang === 'en' ? 'en-US' : 'ru-Ru';
@@ -201,7 +200,7 @@ export default class VirtualKeyboard {
   }
 
   speech(keyObj) {
-    // eslint-disable-next-line new-cap
+    // eslint-disable-next-line no-undef, new-cap
     const recognizer = new webkitSpeechRecognition();
     recognizer.interimResults = true;
     if (this.inputLang === 'ru') {
@@ -241,7 +240,7 @@ export default class VirtualKeyboard {
 
     const keyboard = document.createElement('div');
     keyboard.classList.add('keyboard');
-    keyboard.classList.add('hidden');
+    keyboard.classList.add('keyboard-hidden');
     keyboardWrapper.append(keyboard);
 
     for (let i = 0; i < 5; i++) {
@@ -278,7 +277,7 @@ export default class VirtualKeyboard {
     });
 
     this.inputArea.addEventListener('click', () => {
-      document.querySelector('.keyboard').classList.remove('hidden');
+      document.querySelector('.keyboard').classList.remove('keyboard-hidden');
     });
 
     // event listeners for physical keyboard input

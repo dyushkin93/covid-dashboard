@@ -2,11 +2,11 @@ import Chart from 'chart.js';
 
 export default class CovidChart {
   constructor(covidData) {
-    this.chartElem = document.querySelector('#covid-chart');
+    this.chartElem = document.querySelector('#covid-chart') || document.createElement('canvas');
     this.ctx = this.chartElem.getContext('2d');
     this.covidData = covidData;
 
-    this.countryToShow = this.covidData.world;
+    this.countryToShow = this.covidData.WORLD;
     this.typeOfData = 'cases';
     this.units = 'absolute';
     this.period = 'total';
@@ -128,9 +128,7 @@ export default class CovidChart {
     this.optionsToRender = this.totalOptions;
 
     this.chart = new Chart(this.ctx, this.optionsToRender);
-    this.pag = document.getElementById('chart-paginator');
 
-    // swticher(this.pag);
     this.update();
   }
 
