@@ -7,7 +7,7 @@ export default class VirtualKeyboard {
     this.keys = [];
     this.capsPressed = false;
     this.shiftPressed = false;
-    this.inputArea = placeOfIntegration;
+    this.inputArea = placeOfIntegration || document.createElement('input');
     this.isSoundMute = true;
 
     this.inputEvent = new Event('keyup');

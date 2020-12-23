@@ -6,9 +6,9 @@ export default class CasesByCountry {
     this.byCountryData = Object.values(covidData).slice(1);
     this.app = app;
 
-    this.countryBlock = document.getElementById('by-country');
-    this.search = document.getElementById('search-country');
-    this.title = document.getElementById('country-title');
+    this.countryBlock = document.getElementById('by-country') || document.createElement('div');
+    this.search = document.getElementById('search-country') || document.createElement('div');
+    this.title = document.getElementById('country-title') || document.createElement('h4');
 
     this.keyboard = new VirtualKeyboard(this.search).init();
 
