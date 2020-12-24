@@ -96,10 +96,10 @@ export default async function getCovidData() {
   const lastUpdate = await lastUpdateRes.json();
 
   const covidData = {
-    world: new Country('all', 'world', 7700000000, null),
+    WORLD: new Country('all', 'worl', 7700000000, null),
   };
 
-  covidData.world.lastUpdate = new Date(lastUpdate[0].updatedAt);
+  covidData.WORLD.lastUpdate = new Date(lastUpdate[0].updatedAt);
 
   countriesList.forEach((country) => {
     if (!countriesExceptions.includes(country.countryInfo.iso2)

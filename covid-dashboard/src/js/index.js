@@ -12,7 +12,7 @@ async function main() {
   const covidApp = new App(covidData);
 
   // show last data update date
-  document.querySelector('#last-update').innerHTML = covidData.world.lastUpdate.toLocaleString('en-US');
+  document.querySelector('#last-update').innerHTML = covidData.WORLD.lastUpdate.toLocaleString('en-US');
 
   // handler of switchers
   document.querySelectorAll('.paginator .arrow').forEach((arrow) => {

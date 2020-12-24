@@ -20,11 +20,12 @@ export default class CasesByCountry {
 
     this.switchCountry = (event) => {
       event.target.parentElement.classList.toggle('active-country-cell');
+      this.currentCountry = event.target;
       let countryCode = '';
-      if (event.target.parentElement.classList.contains('active-country-cell')) {
+      if (event.target.parentElement.classList.contains('active-country-cell') && !this.currentCountry.parentElement.classList.contains('current')) {
         countryCode = event.target.dataset.key;
       } else {
-        countryCode = 'all';
+        countryCode = 'WORLD';
       }
       app.switchBlocksData({
         countryCode,
@@ -54,12 +55,6 @@ export default class CasesByCountry {
     return matches;
   }
 
-  // this function recreate countryCell on evety update
-  // TODO: function should create constant countryCells during the app init
-  // On every update data should be replaced via Element.innerHTML property
-  // That's because there should be ability to toggle each country and keep it active
-  // All event handlers are ready, you should just refactor code as described above
-  // to hide CountryCells during the searching you can use display:hidden
   createBlock(data, type, units) {
     if (units === 'absolute') {
       if (type === 'deaths') {
@@ -68,8 +63,11 @@ export default class CasesByCountry {
           .forEach((el) => {
             this.countryCases = create('div', 'confirmed', `${el.deaths}`);
             this.country = create('div', 'country', `${el.name}`, null, ['data-key', `${el.code}`]);
-            this.flag = create('img', 'flag', null, null, ['src', `../assets/img/flags/${el.code.toLowerCase()}.svg`], ['alt', `${el.code}`]);
-            this.countryCell = create('div', 'country-cell', [this.countryCases, this.country, this.flag], this.countryBlock);
+            this.flag = create('img', 'flag', null, null,
+              ['src', `./assets/img/flags/${el.code.toLowerCase()}.svg`], ['alt', `${el.code}`]);
+            if (this.currentCountry && el.code === this.currentCountry.dataset.key) {
+              this.countryCell = create('div', 'country-cell current', [this.countryCases, this.country, this.flag], this.countryBlock);
+            } else this.countryCell = create('div', 'country-cell', [this.countryCases, this.country, this.flag], this.countryBlock);
           });
       } else if (type === 'recovered') {
         this.countryBlock.innerHTML = '';
@@ -77,8 +75,10 @@ export default class CasesByCountry {
           .forEach((el) => {
             this.countryCases = create('div', 'confirmed', `${el.recovered}`);
             this.country = create('div', 'country', `${el.name}`, null, ['data-key', `${el.code}`]);
-            this.flag = create('img', 'flag', null, null, ['src', `../assets/img/flags/${el.code.toLowerCase()}.svg`], ['alt', `${el.code}`]);
-            this.countryCell = create('div', 'country-cell', [this.countryCases, this.country, this.flag], this.countryBlock);
+            this.flag = create('img', 'flag', null, null, ['src', `./assets/img/flags/${el.code.toLowerCase()}.svg`], ['alt', `${el.code}`]);
+            if (this.currentCountry && el.code === this.currentCountry.dataset.key) {
+              this.countryCell = create('div', 'country-cell current', [this.countryCases, this.country, this.flag], this.countryBlock);
+            } else this.countryCell = create('div', 'country-cell', [this.countryCases, this.country, this.flag], this.countryBlock);
           });
       } else {
         this.countryBlock.innerHTML = '';
@@ -86,39 +86,56 @@ export default class CasesByCountry {
           .forEach((el) => {
             this.countryCases = create('div', 'confirmed', `${el.cases}`);
             this.country = create('div', 'country', `${el.name}`, null, ['data-key', `${el.code}`]);
-            this.flag = create('img', 'flag', null, null, ['src', `../assets/img/flags/${el.code.toLowerCase()}.svg`], ['alt', `${el.code}`]);
-            this.countryCell = create('div', 'country-cell', [this.countryCases, this.country, this.flag], this.countryBlock);
+            this.flag = create('img', 'flag', null, null, ['src', `./assets/img/flags/${el.code.toLowerCase()}.svg`], ['alt', `${el.code}`]);
+            if (this.currentCountry && el.code === this.currentCountry.dataset.key) {
+              this.countryCell = create('div', 'country-cell current', [this.countryCases, this.country, this.flag], this.countryBlock);
+            } else this.countryCell = create('div', 'country-cell', [this.countryCases, this.country, this.flag], this.countryBlock);
           });
       }
     } else if (units === 'relative') {
       if (type === 'deaths') {
         this.countryBlock.innerHTML = '';
-        data.sort((a, b) => b.deaths - a.deaths)
+        data.sort((a, b) => (b.deaths / b.population)
+           * 100000 - (a.deaths / a.population) * 100000)
           .forEach((el) => {
             this.countryCases = create('div', 'confirmed', `${el.deaths !== 0 ? Math.round((el.deaths / el.population) * 100000, -2) : 0}`);
             this.country = create('div', 'country', `${el.name}`, null, ['data-key', `${el.code}`]);
-            this.flag = create('img', 'flag', null, null, ['src', `../assets/img/flags/${el.code.toLowerCase()}.svg`], ['alt', `${el.code}`]);
-            this.countryCell = create('div', 'country-cell', [this.countryCases, this.country, this.flag], this.countryBlock);
+            this.flag = create('img', 'flag', null, null, ['src', `./assets/img/flags/${el.code.toLowerCase()}.svg`], ['alt', `${el.code}`]);
+            if (this.currentCountry && el.code === this.currentCountry.dataset.key) {
+              this.countryCell = create('div', 'country-cell current', [this.countryCases, this.country, this.flag], this.countryBlock);
+            } else this.countryCell = create('div', 'country-cell', [this.countryCases, this.country, this.flag], this.countryBlock);
           });
       } else if (type === 'recovered') {
         this.countryBlock.innerHTML = '';
-        data.sort((a, b) => b.deaths - a.deaths)
+        data.sort((a, b) => (b.recovered / b.population)
+          * 100000 - (a.recovered / a.population) * 100000)
           .forEach((el) => {
             this.countryCases = create('div', 'confirmed', `${el.recovered !== 0 ? Math.round((el.recovered / el.population) * 100000, -2) : 0}`);
             this.country = create('div', 'country', `${el.name}`, null, ['data-key', `${el.code}`]);
-            this.flag = create('img', 'flag', null, null, ['src', `../assets/img/flags/${el.code.toLowerCase()}.svg`], ['alt', `${el.code}`]);
-            this.countryCell = create('div', 'country-cell', [this.countryCases, this.country, this.flag], this.countryBlock);
+            this.flag = create('img', 'flag', null, null, ['src', `./assets/img/flags/${el.code.toLowerCase()}.svg`], ['alt', `${el.code}`]);
+            if (this.currentCountry && el.code === this.currentCountry.dataset.key) {
+              this.countryCell = create('div', 'country-cell current', [this.countryCases, this.country, this.flag], this.countryBlock);
+            } else this.countryCell = create('div', 'country-cell', [this.countryCases, this.country, this.flag], this.countryBlock);
           });
       } else {
         this.countryBlock.innerHTML = '';
-        data.sort((a, b) => (b.cases / b.population) * 100000 - (a.cases / a.population) * 100000)
+        data.sort((a, b) => (b.cases / b.population)
+           * 100000 - (a.cases / a.population) * 100000)
           .forEach((el) => {
             this.countryCases = create('div', 'confirmed', `${el.cases !== 0 ? Math.round((el.cases / el.population) * 100000, -2) : 0}`);
             this.country = create('div', 'country', `${el.name}`, null, ['data-key', `${el.code}`]);
-            this.flag = create('img', 'flag', null, null, ['src', `../assets/img/flags/${el.code.toLowerCase()}.svg`], ['alt', `${el.code}`]);
-            this.countryCell = create('div', 'country-cell', [this.countryCases, this.country, this.flag], this.countryBlock);
+            this.flag = create('img', 'flag', null, null, ['src', `./assets/img/flags/${el.code.toLowerCase()}.svg`], ['alt', `${el.code}`]);
+            if (this.currentCountry && el.code === this.currentCountry.dataset.key) {
+              this.countryCell = create('div', 'country-cell current', [this.countryCases, this.country, this.flag], this.countryBlock);
+            } else this.countryCell = create('div', 'country-cell', [this.countryCases, this.country, this.flag], this.countryBlock);
           });
       }
+    }
+
+    if (this.currentCountry) {
+      this.countryBlock.querySelector('.current').addEventListener('click', () => {
+        this.countryBlock.querySelector('.current').classList.remove('current');
+      });
     }
 
     this.countryBlock.querySelectorAll('.country').forEach((countryElem) => {

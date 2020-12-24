@@ -12,7 +12,7 @@ export default class CovidMap {
     this.tooltipTimeout = undefined;
     this.tooltip = document.createElement('div');
 
-    this.mapElement = document.querySelector('#map');
+    this.mapElement = document.querySelector('#map') || document.createElement('div');
     this.mapMarker = document.querySelector('#mapMarker');
     this.colors = {
       cases: '#8b0000',
@@ -24,7 +24,7 @@ export default class CovidMap {
     };
 
     this.map = new mapboxgl.Map({
-      container: 'map',
+      container: this.mapElement,
       style: 'mapbox://styles/dyushkin93/ckihx7sv06zez19k0dnpdbkdx', // stylesheet location
       center: [30, 40], // starting position [lng, lat]
       zoom: 2, // starting zoom
@@ -252,13 +252,21 @@ export default class CovidMap {
     this.update();
   }
 
-  focusOnCountry(countryCode) {
-    const { coordinates } = this.points.features
-      .find((point) => point.properties.countryCode === countryCode)
-      .geometry;
+  focusOnCountry(country) {
+    let zoom;
+    let coordinates;
+    if (country === 'WORLD') {
+      zoom = 2;
+      coordinates = [30, 40];
+    } else {
+      zoom = 5;
+      coordinates = this.points.features
+        .find((point) => point.properties.countryCode === country)
+        .geometry.coordinates;
+    }
     this.map.flyTo({
       center: coordinates,
-      zoom: 5,
+      zoom,
       speed: 1.2,
     });
   }

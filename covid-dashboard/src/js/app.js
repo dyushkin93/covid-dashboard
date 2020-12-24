@@ -3,10 +3,12 @@ import GlobalDataBlock from './global-data-block';
 import CovidChart from './covid-chart';
 import CovidMap from './map';
 import expandBlock from './helpers/expand';
+import overlay from './helpers/overlay';
 
 export default class App {
   constructor(covidData) {
     this.covidData = covidData;
+    this.row = document.querySelector('.row');
     // period to show in blocks "total" || "lastDay"
     this.period = 'total';
 
@@ -20,12 +22,27 @@ export default class App {
       casesByCounty: new CasesByCountry(covidData, this),
     };
 
+    overlay();
     expandBlock();
+    this.addHover();
   }
 
   switchBlocksData(options) {
     Object.values(this.blocks).forEach((block) => {
       block.switchData(options);
+    });
+  }
+
+  addHover() {
+    Object.values(this.row.children).forEach((e) => {
+      Object.values(e.children).forEach((el) => {
+        el.addEventListener('mouseover', () => {
+          el.classList.add('hover');
+        });
+        el.addEventListener('mouseout', () => {
+          el.classList.remove('hover');
+        });
+      });
     });
   }
 }

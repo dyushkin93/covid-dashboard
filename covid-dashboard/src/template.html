@@ -9,6 +9,21 @@
 </head>
 <body>
 
+  <div class="overlay hidden">
+    <div class="overlay__content">
+      <h4 class="overlay-title">Уважаемый Cross-checker,</h4>
+      <p class="overlay-text">Eсли ты проверяешь нашу работу с ноутбука, просим тебя выставить в настройках экрана масштаб 100%, если выставил, то кликни на анимацию.</p>
+      <img class="overlay-img" src="./assets/img/virus.png" alt="fuck covid">
+    </div>
+    <div class="overlay__close hidden">
+      <button type="button" class="close" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <img src="./assets/img/keanu.png" alt="You're Amazing!">
+      <h4>You're amazing!</h4>
+    </div>
+  </div>
+
   <nav class="nav navbar-dark bg-primary mb-3">
     <div class="container-fluid d-flex justify-content-center">
       <h1 class="navbar-text">COVID-19 Dashboard</h1>
@@ -17,7 +32,7 @@
 
   <div class="container-fluid">
     <div class="row">
-      <div id="cases-block" class="row__cases col-2">
+      <div id="cases-block" class="row__cases col-xl-2 col-lg-3 col-sm-6 order-xl-first col-6 order-lg-first">
         <div class="cases-container">
           <svg id="size-btn" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="cases-expand size-btn bi bi-arrows-angle-expand hidden" viewBox="0 0 16 16">
             <path fill-rule="evenodd" d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707zm4.344-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707z"/>
@@ -56,7 +71,7 @@
           <h5 id="last-update"></h5>
         </div>
       </div>
-      <div id="map-block" class="row__map col-7">
+      <div id="map-block" class="row__map col-xl-7 col-lg-6 col-sm-12 col-12 order-sm-first order-first">
         <div class="map-container">
           <svg id="size-btn" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="map-expand size-btn bi bi-arrows-angle-expand hidden" viewBox="0 0 16 16">
             <path fill-rule="evenodd" d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707zm4.344-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707z"/>
@@ -97,49 +112,43 @@
             <p>2020</p>
             <a href="https://github.com/vio7enc3">Nikita Sakerin</a>
             <a href="https://github.com/dyushkin93">Dmitriy Yushkin</a>
-            </div>
           </div>
         </div>
-      <div id="global" class="row__global col-3">
-        <div class="card deskboard bg-transparent">
+        </div>
+      <div id="global" class="row__global col-xl-3 col-lg-3 col-sm-6 col-6">
+        <div class="deskboard">
           <svg id="size-btn" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="global-expand size-btn bi bi-arrows-angle-expand hidden" viewBox="0 0 16 16">
             <path fill-rule="evenodd" d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707zm4.344-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707z"/>
           </svg>
-          <ul class="list-group list-group-flush border-bottom border-secondary">
-            <li class="list-group-item bg-transparent">
-              <div id="global-cases" class="global global-cases">
-                <h5>Global Cases</h2>
-                <p id="cases-count"></p>
-              </div>
-            </li>
-            <li class="list-group-item bg-transparent">
-              <div id="global-death" class="global global-death">
-                <h5>Global Deaths</h2>
-                <p id="death-count"></p>
-              </div>
-            </li>
-            <li class="list-group-item bg-transparent">
-              <div id="global-revovered" class="global global-recovered">
-                <h5>Global Recovered</h2>
-                <p id="recovered-count"></p>
-              </div>
-            </li>
-          </ul>
-          <div class="paginator" data-param="period">
-            <i id="chevron-left" class="prev arrow bi bi-chevron-left"></i>
-            <div class="paginator-container">
-              <p class="list-item active" data-value="total">Total</p>
-              <p class="list-item" data-value="last">Last Day</p>
-            </div>
-            <i id="chevron-right" class="next arrow bi bi-chevron-right"></i>
+          <div id="global-cases" class="global global-cases">
+            <h5>Global Cases</h2>
+            <p id="cases-count"></p>
           </div>
-          <div class="paginator" data-param="units">
-            <i id="chevron-left" class="prev arrow bi bi-chevron-left"></i>
-            <div class="paginator-container">
-              <p class="list-item active" data-value="absolute">People</p>
-              <p class="list-item" data-value="relative">People per 100k</p>
+          <div id="global-death" class="global global-death">
+            <h5>Global Deaths</h2>
+            <p id="death-count"></p>
+          </div>
+          <div id="global-revovered" class="global global-recovered">
+            <h5>Global Recovered</h2>
+            <p id="recovered-count"></p>
+          </div>
+          <div class="pag-block">
+            <div class="paginator" data-param="period">
+              <i id="chevron-left" class="prev arrow bi bi-chevron-left"></i>
+              <div class="paginator-container">
+                <p class="list-item active" data-value="total">Total</p>
+                <p class="list-item" data-value="last">Last Day</p>
+              </div>
+              <i id="chevron-right" class="next arrow bi bi-chevron-right"></i>
             </div>
-            <i id="chevron-right" class="next arrow bi bi-chevron-right"></i>
+            <div class="paginator" data-param="units">
+              <i id="chevron-left" class="prev arrow bi bi-chevron-left"></i>
+              <div class="paginator-container">
+                <p class="list-item active" data-value="absolute">People</p>
+                <p class="list-item" data-value="relative">People per 100k</p>
+              </div>
+              <i id="chevron-right" class="next arrow bi bi-chevron-right"></i>
+            </div>
           </div>
         </div>
         <div class="graph">
@@ -149,36 +158,45 @@
           <div class="chart-wrapper">
             <canvas id="covid-chart"></canvas>
           </div>
-          <div class="paginator" data-param="typeOfData">
-            <i id="chevron-left" class="prev arrow bi bi-chevron-left"></i>
-            <div class="paginator-container">
-              <p class="list-item active" data-value="cases">Cases</p>
-              <p class="list-item" data-value="deaths">Deaths</p>
-              <p class="list-item" data-value="recovered">Recovered</p>
+          <div class="pag-block">
+            <div class="paginator" data-param="typeOfData">
+              <i id="chevron-left" class="prev arrow bi bi-chevron-left"></i>
+              <div class="paginator-container">
+                <p class="list-item active" data-value="cases">Cases</p>
+                <p class="list-item" data-value="deaths">Deaths</p>
+                <p class="list-item" data-value="recovered">Recovered</p>
+              </div>
+              <i id="chevron-right" class="next arrow bi bi-chevron-right"></i>
             </div>
-            <i id="chevron-right" class="next arrow bi bi-chevron-right"></i>
-          </div>
-          <div class="paginator" data-param="period">
-            <i id="chevron-left" class="prev arrow bi bi-chevron-left"></i>
-            <div class="paginator-container">
-              <p class="list-item active" data-value="total">Total</p>
-              <p class="list-item" data-value="last">Last Day</p>
+            <div class="paginator" data-param="period">
+              <i id="chevron-left" class="prev arrow bi bi-chevron-left"></i>
+              <div class="paginator-container">
+                <p class="list-item active" data-value="total">Total</p>
+                <p class="list-item" data-value="last">Last Day</p>
+              </div>
+              <i id="chevron-right" class="next arrow bi bi-chevron-right"></i>
             </div>
-            <i id="chevron-right" class="next arrow bi bi-chevron-right"></i>
-          </div>
-          <div class="paginator" data-param="units">
-            <i id="chevron-left" class="prev arrow bi bi-chevron-left"></i>
-            <div class="paginator-container">
-              <p class="list-item active" data-value="absolute">People</p>
-              <p class="list-item" data-value="relative">People per 100k</p>
+            <div class="paginator" data-param="units">
+              <i id="chevron-left" class="prev arrow bi bi-chevron-left"></i>
+              <div class="paginator-container">
+                <p class="list-item active" data-value="absolute">People</p>
+                <p class="list-item" data-value="relative">People per 100k</p>
+              </div>
+              <i id="chevron-right" class="next arrow bi bi-chevron-right"></i>
             </div>
-            <i id="chevron-right" class="next arrow bi bi-chevron-right"></i>
           </div>
         </div>
       </div>
     </div>
-
     </div>
+    <footer class="footer">
+      <div class="container">
+        <a href="https://rs.school/js/"><img class="footer-logo" src="./assets/img/logo-rs.svg" alt="Rolling Scopes School"></a>
+        <p>2020</p>
+        <a href="https://github.com/vio7enc3">Nikita Sakerin</a>
+        <a href="https://github.com/dyushkin93">Dmitriy Yushkin</a>
+      </div>
+    </footer>
   </div>
   <template id="mapMarker">
     <div class="marker">
